@@ -47,28 +47,7 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
 
     <br><br>
 
-    <h3>CALCULE AQUI EL PRECIO DEL BOLETO</h3>
-
-    <div class="barra_cont">
-        
-        <div class="calc_pago">
-            
-            <div class="cont_element_calc">
-                <button class="btn_calc button" id="resta">-</button>
-            </div>
-
-            <div class="cont_element_calc">
-                <h3 class="cant_boletos">0</h3>
-            </div>
-            
-            <div class="cont_element_calc">
-                <button class="btn_calc button" id="suma">+</button>
-            </div>
-            
-            
-        </div>
-        <h3 class="monto"></h3>
-    </div>
+    
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -76,18 +55,34 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
     const restaBtn = document.getElementById('resta');
     const cantBoletosDisplay = document.querySelector('.cant_boletos');
     const montoDisplay = document.querySelector('.monto');
-
-
+    const selectorTickets = document.querySelectorAll('.selector_ticket');
+    let cantidadBoletos = 0;
     const precioBoletoD = {{$sorteo->precio_boleto_dolar}};
     const precioBoletoB = {{$sorteo->precio_boleto_bs}}
+    const cantTicketInput = document.getElementById('cantidad_de_tickets');
+    const montoTicketsInput = document.getElementById('monto');
 
-    let cantidadBoletos = 0;
+    
 
     function actualizarMonto() {
         const totalPagarD = cantidadBoletos * precioBoletoD;
         const totalPagarB =  cantidadBoletos * precioBoletoB
         montoDisplay.textContent = `Total: $${totalPagarD.toFixed(2)} ----- bs${totalPagarB.toFixed(2)}`; 
+        cantTicketInput.value = cantidadBoletos;
+        montoTicketsInput.value = cantidadBoletos * precioBoletoB;
     }
+
+    
+
+    selectorTickets.forEach(select =>{
+        select.addEventListener('click', function() {
+            const cantidadSeleccionada = parseInt(this.textContent);
+            cantidadBoletos  += cantidadSeleccionada;
+            cantBoletosDisplay.textContent = cantidadBoletos;
+            actualizarMonto();
+        });
+    })
+    
 
     sumaBtn.addEventListener('click', function() {
         cantidadBoletos++;
@@ -124,6 +119,38 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
                 <h2>ingrese sus datos</h2>
                 @csrf
                 <input type="hidden" id="id_sorteo" name="id_sorteo" value="{{$sorteo->id_sorteo}}" required>
+                <div class="container_tick">
+                    <div class="selector_ticket"><p>5 tickets</p></div>
+                    <div class="selector_ticket"><p>10 tickets</p></div>
+                    <div class="selector_ticket"><p>20 tickets</p></div>
+                    <div class="selector_ticket"><p>30 tickets</p></div>
+                    <div class="selector_ticket"><p>50 tickets</p></div>
+                </div>
+                <br>
+                
+
+                <div class="barra_cont">
+        
+                    <div class="calc_pago">
+                        
+                        <div class="cont_element_calc">
+                            <div class="btn_calc button" id="resta">-</div>
+                        </div>
+
+                        <div class="cont_element_calc">
+                            <div class="cont_cant_boletos"><h3 class="cant_boletos">0</h3></div>
+                        </div>
+                        
+                        <div class="cont_element_calc">
+                            <div class="btn_calc button" id="suma">+</div>
+                        </div>
+                        
+                        
+                    </div>
+                    <h3 class="monto"></h3>
+                </div>
+
+
                 <label for="cedula">Cedula:</label>
                 <input type="text" placeholder="cedula" id="cedula" name="cedula" class="input_form" required>
                 <label for="nombre_y_apellido">Nombre y Apellido:</label>
@@ -146,21 +173,20 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
                 </div>
                 <div class="cont_pago_compra">
                     <div class="datos_pago data_p">
-                        <h3>Binance</h3>
-                        <p class="data">Jesus Melean</p>
-                        <p class="data">Correo: rocktoyonyo@gmail.com</p>
-                        <p class="data">ID: 163593375</p>
+                        
                     </div>
 
                 </div>
                 <br>
-                <label for="cantidad_de_tickets">Cantidad de tickets:</label>
+
                 
-                <input type="number" placeholder="cantidad de tickets" id="cantidad_de_tickets" name="cantidad_de_tickets" class="input_form"  required min="1" max="{{$cantidad_disponible}}">
+                <input type="hidden" id="cantidad_de_tickets" name="cantidad_de_tickets" class="input_form"  required min="1" max="{{$cantidad_disponible}}">
+                <input type="hidden"  id="monto" name="monto" class="input_form" required>
+
+
+                
                 <label for="referencia">Referencia de pago:</label>
                 <input type="number" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
-                <label for="monto">Monto:</label>
-                <input type="number" placeholder="monto" id="monto" name="monto" class="input_form" required>
                 <label for="fecha_de_pago">Fecha de pago:</label>
                 <input type="date" placeholder="fecha de pago" id="fecha_de_pago" name="fecha_de_pago" class="input_form" required>
                 
