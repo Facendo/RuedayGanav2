@@ -1,0 +1,73 @@
+ 
+ /* --------------- header ----------------- */
+ 
+ @media (max-width: 650px) {
+    .container_info{
+        display: block;
+        width: 100%;
+    }
+
+    .img_logo{
+        margin: 0 auto;
+    }
+
+    .containertext_presentacion{
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .card_datos{
+        width: 250px;
+        margin: 30px;
+    }
+ }
+
+
+ @media (max-width: 1170px) {
+
+    .card{
+        width: 60%;
+    }
+
+
+    h2.slogan_footer {
+        font-size: 15px;
+    }
+
+    .text_footer{
+        font-size: 10px;
+    }
+ }
+
+ @media (max-width: 630px){
+    .contenido_foot{
+        flex-direction: column;
+    }
+
+    .cont_foot{
+        width: 80%;
+        margin: 10px;
+    }
+
+
+ }
+
+ @media (max-width: 210px){
+
+ }
+
+ @media (max-width: 1000px){
+    .cont_form{
+        width: 70%;
+    }
+ }
+
+ @media (max-width: 830px){
+    .cont_form{
+        width: 80%;
+    }
+
+    .card{
+        width: 70%;
+    }
+ }
