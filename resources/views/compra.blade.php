@@ -126,10 +126,8 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
                 <input type="hidden" id="id_sorteo" name="id_sorteo" value="{{$sorteo->id_sorteo}}" required>
                 <label for="cedula">Cedula:</label>
                 <input type="text" placeholder="cedula" id="cedula" name="cedula" class="input_form" required>
-                <label for="nombre">Nombre:</label>
-                <input type="text" placeholder="nombre" id="nombre" name="nombre"class="input_form" required>
-                <label for="apellido">Apellido:</label>
-                <input type="text" placeholder="apellido" id="apellido" name="apellido" class="input_form" required> 
+                <label for="nombre_y_apellido">Nombre y Apellido:</label>
+                <input type="text" placeholder="nombre y apellido" id="nombre_y_apellido" name="nombre_y_apellido" class="input_form" required>
                 <label for="telefono">Telefono:</label>
                 <input type="text" placeholder="telefono" id="telefono" name="telefono" class="input_form" required>
                 <label for="correo">Correo:</label>
