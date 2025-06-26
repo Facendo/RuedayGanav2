@@ -623,7 +623,7 @@ form.form_tickets{
 }
 
 .barra_cont{
-    width: 70%;
+    width: 100%;
     padding: 25px;
     border-radius: 10px;
     margin: 30px auto;
@@ -658,9 +658,19 @@ form.form_tickets{
     
 }
 
+.cont_cant_boletos{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(254, 180, 3);
+    border-radius: 5px;
+}
+
 .btn_calc{
     font-size: 20px;
     font-weight: bold;
+    text-align: center;
 }
 
 .cont_num_mail{
@@ -683,6 +693,32 @@ form.form_tickets{
 .title_mail{
     font-family: "Alfa Slab One", serif;
     font-family: Arial;
+}
+
+
+/* --------------------- compra cambios -------------------- */
+
+.selector_ticket{
+    width: 200px;
+    height: 70px;
+    display: flex;
+    padding: 20pxs;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid rgb(254, 180, 3);
+    cursor: pointer;
+    margin: 5px;
+    user-select: none;
+}
+
+.container_tick{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 20px auto;
 }
 
 
