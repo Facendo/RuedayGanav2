@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('cliente', function (Blueprint $table) {
             $table->string('cedula')->primary();
             $table->integer('id_sorteo');
-            $table->string('nombre');
-            $table->string('apellido');
+            $table->string('nombre_y_apellido');
             $table->string('telefono');
             $table->string('correo');
             $table->integer('cantidad_comprados')->default(0)->nullable();

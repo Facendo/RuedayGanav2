@@ -33,8 +33,7 @@ class ClienteController extends Controller
         $cliente = new Cliente();
         
         $cliente->cedula = $request->cedula;
-        $cliente->nombre = $request->nombre;
-        $cliente->apellido = $request->apellido;
+        $cliente->nombre_y_apellido = $request->nombre_y_apellido;
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
         $cliente->cantidad_comprados = 0;
