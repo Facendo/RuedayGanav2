@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sorteo;
 use Illuminate\Http\Request;
+use App\Models\Cliente;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -13,9 +14,16 @@ class SorteoController extends Controller
     
     public function index()
     {
+        //Funcion para buscar los 5 clientes con mas tickets comprados
+        // y mostrar los sorteos disponibles
+        $clientes = Cliente::withCount('cliente')
+            ->orderBy('cantidad_comprados', 'desc')
+            ->take(5)
+            ->get();
+
         $sorteos = Sorteo::all();
-        return view('index', compact('sorteos'));
-            
+        return view('index', compact('sorteos', 'clientes'));
+
     }
 
     
