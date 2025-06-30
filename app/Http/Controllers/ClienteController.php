@@ -23,7 +23,6 @@ class ClienteController extends Controller
        
         if(Cliente::where('cedula', $request->cedula)->exists()){
             $clienteregistrado = Cliente::where('cedula', $request->cedula)->first();
-            $clienteregistrado->cantidad_comprados+=$request->cantidad_de_tickets;
             $clienteregistrado->fecha_de_pago = $request->fecha_de_pago;
             $clienteregistrado->save();
             $clienteregistrado->id_sorteo = $request->id_sorteo;
@@ -37,7 +36,7 @@ class ClienteController extends Controller
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
         $cliente->cantidad_comprados = 0;
-        $cliente->cantidad_comprados+= $request->cantidad_de_tickets;
+        
         $cliente->fecha_de_pago = $request->fecha_de_pago; 
         $cliente->id_sorteo = $request->id_sorteo;
         $cliente->save();
