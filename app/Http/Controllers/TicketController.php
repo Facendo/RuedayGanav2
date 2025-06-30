@@ -54,6 +54,8 @@ class TicketController extends Controller
         $admin = User::all();
         $pago = Pago::find($request->id_pago);
         $cliente = Cliente::find($pago->cedula_cliente);
+        $cliente->cantidad_comprados+= $pago->cantidad_de_tickets;
+        $cliente->save();
         
         if($request->numeros_seleccionados == "aleatorio"){ 
             $numerosSeleccionados = [];
@@ -84,7 +86,7 @@ class TicketController extends Controller
         $ticket->id_sorteo = $request->id_sorteo;
         $ticket->nombre_sorteo = $sorteo->sorteo_nombre;
         $ticket->ticket_token = $this->buildtoken();
-        $ticket->nombre_cliente = $request->nombre_cliente;
+        $ticket->nombre_cliente = $cliente->nombre_y_apellido;
         $ticket->telefono_cliente = $request->telefono_cliente;
         $ticket->ticket_descripcion = "Ticket de la rifa " . $sorteo->sorteo_nombre;
         $ticket->numeros_seleccionados = json_encode($numerosSeleccionados);
