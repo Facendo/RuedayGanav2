@@ -98,6 +98,50 @@ y tú solo tienes que jugar pa’ ganar.
 </section>
 
 
+<!----------------------- SECCION TOP DE VENTAS ----------------------------->
+
+
+
+<section id="top_ventas">
+
+
+    <h2 class="section_subtitle">TOP DE VENTAS</h2>
+    <div class="container_table">
+        <table class="table_top"> 
+            <thead class="table_top_header">
+                <tr class="tr_top">
+                    <th class="th_top">Puesto</th>
+                    <th class="th_top">Nombre</th>
+                    <th class="th_top">Cantidad de boletos</th>
+                </tr>
+            </thead>
+            <tbody>
+            @empty(!$clientes)
+                @foreach($clientes as $key => $cliente) {{-- Agregamos $key para obtener el índice --}}
+                    @if($cliente->cantidad_comprados === 0)
+                        @continue {{-- Si la cantidad de boletos es 0, saltamos a la siguiente iteración --}}
+                    @endif
+                    <tr class="tr_top">
+                        <td class="td_top">
+                            @if($key === 0) {{-- Verifica si es el primer elemento (índice 0) --}}
+                                <img src="{{asset('img/trofeo.png')}}" alt="imagen trofeo" class="img_trofeo">
+                            @endif
+                        </td>
+                        <td class="td_top">{{ $cliente->nombre_y_apellido }}</td>
+                        <td class="td_top">{{ $cliente->cantidad_comprados }}</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr class="tr_top">
+                    <td class="td_top" colspan="3">No hay clientes registrados.</td>
+                </tr>
+            @endempty
+        </tbody>
+        </table>
+
+    </div>
+
+</section>
 
 
 

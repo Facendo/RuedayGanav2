@@ -10,21 +10,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('img/favicon-32x32.png')}}">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <title>Compra</title>
 </head>
 
 <body>
 
- <nav id="menu" class="menu">
-    <h2 class="titulo">Compra de tickets</h2>
- </nav>
+<div id="sorteo-data" data-precio-dolar="{{ $sorteo->precio_boleto_dolar }}" data-precio-bs="{{ $sorteo->precio_boleto_bs }}"></div>
 
-<h2 class="section_subtitle">REGISTRAR COMPRA</h2>
+<script>
+    window.AppConfig = {
+        copyIconUrl: "{{ asset('img/copy.png') }}", // Ruta corregida
+        successIconUrl: "{{ asset('img/like.png') }}", // Ruta corregida
+        errorIconUrl: "{{ asset('img/dislike.png') }}" // Ruta corregida
+    };
+</script>
 
 @php
     $numeros_disponibles = json_decode($sorteo->numeros_disponibles, true);
     $cantidad_disponible = count($numeros_disponibles);
 @endphp
+
+ <nav id="menu" class="menu">
+    <h2 class="titulo">Compra de tickets</h2>
+ </nav>
+
+
+ 
+ 
+<h2 class="section_subtitle">REGISTRAR COMPRA</h2>
+
+
 
 <section id="cuentas">
 
@@ -49,60 +65,8 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
 
     
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const sumaBtn = document.getElementById('suma');
-    const restaBtn = document.getElementById('resta');
-    const cantBoletosDisplay = document.querySelector('.cant_boletos');
-    const montoDisplay = document.querySelector('.monto');
-    const selectorTickets = document.querySelectorAll('.selector_ticket');
-    let cantidadBoletos = 0;
-    const precioBoletoD = {{$sorteo->precio_boleto_dolar}};
-    const precioBoletoB = {{$sorteo->precio_boleto_bs}}
-    const cantTicketInput = document.getElementById('cantidad_de_tickets');
-    const montoTicketsInput = document.getElementById('monto');
-
-    
-
-    function actualizarMonto() {
-        const totalPagarD = cantidadBoletos * precioBoletoD;
-        const totalPagarB =  cantidadBoletos * precioBoletoB
-        montoDisplay.textContent = `Total: $${totalPagarD.toFixed(2)} ----- bs${totalPagarB.toFixed(2)}`; 
-        cantTicketInput.value = cantidadBoletos;
-        montoTicketsInput.value = cantidadBoletos * precioBoletoB;
-    }
-
-    
-
-    selectorTickets.forEach(select =>{
-        select.addEventListener('click', function() {
-            const cantidadSeleccionada = parseInt(this.textContent);
-            cantidadBoletos  += cantidadSeleccionada;
-            cantBoletosDisplay.textContent = cantidadBoletos;
-            actualizarMonto();
-        });
-    })
-    
-
-    sumaBtn.addEventListener('click', function() {
-        cantidadBoletos++;
-        cantBoletosDisplay.textContent = cantidadBoletos;
-        actualizarMonto();
-    });
-
-    restaBtn.addEventListener('click', function() {
-        if (cantidadBoletos > 0) {
-            cantidadBoletos--;
-            cantBoletosDisplay.textContent = cantidadBoletos;
-            actualizarMonto();
-        }
-    });
-
-   
-    cantBoletosDisplay.textContent = cantidadBoletos;
-    actualizarMonto();
-});
-    </script>
+    <script src="{{asset('js/manejo_tickets.js')}}"></script>
+        
 
 
 </section>
@@ -194,68 +158,52 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
                     <label for="">Subir comprobante de pago</label>
                     <label for="imagen_comprobante" class="file">Click para enviar comprobante de pago</label>
                     <input type="file" id="imagen_comprobante" name="imagen_comprobante" accept="image/png, image/jpeg, image/jpg" class="input_file"  required>
+                    <p id="mensajeCargaImagen" style="display:none; margin-top: 5px; font-size: 0.9em;"></p>
                 </div>
                 <button class="button btn_modal" type="submit">Enviar</button>
+
+                <div id="message">
+                    
+                </div>
+                
             </form>
         </div>
 </section>
 
+<script src="{{asset('js/data_pago.js')}}"></script>
+
 <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    const metodoDePagoSelect = document.getElementById('metodo_de_pago');
-    const contPagoCompraDiv = document.querySelector('.data_p');
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputImagen = document.getElementById('imagen_comprobante');
+        const mensajeCarga = document.getElementById('mensajeCargaImagen');
+        const miFormulario = document.querySelector('.form'); 
 
-    const detallesDePago = {
-        'Pago movil Banesco': `
-            <h3>Pago Movil Banesco</h3>
-            <p class="data">0134</p>
-            <p class="data">28.407.272</p>
-            <p class="data">0424-8676344</p>
-            
-        `,
-        'Pago movil Banplus': `
-            <h3>Pago Movil Banplus</h3>
-            <p class="data">0174</p>
-            <p class="data">28.588.823</p>
-            <p class="data">0412-9425624</p>
-            
-        `,
-        'Zinli': `
-            <h3>Zinli</h3>
-            <p class="data">Jesus Melean</p>
-            <p class="data">Correo: rocktoyonyo@gmail.com</p>
-        `,
-        'Binance': `
-            <h3>Binance</h3>
-            <p class="data">Jesus Melean</p>
-            <p class="data">Correo: rocktoyonyo@gmail.com</p>
-            <p class="data">ID: 163593375</p>
-            
-        `,
-        'Paypal': `
-            <h3>Paypal</h3>
-            <p class="data">Nombre: Jickary Aponte</p>
-            <p class="data">Correo: sulcajickary@gmail.com</p>
-            
-        `,
-        'n': `<p>Por favor, selecciona un método de pago para ver los detalles.</p>`,
-        'default': `<p>Por favor, selecciona un método de pago para ver los detalles.</p>`
-    };
+        
+        inputImagen.addEventListener('change', () => {
+            if (inputImagen.files.length > 0) {
+                const fileName = inputImagen.files[0].name;
+                mensajeCarga.textContent = `Archivo seleccionado: ${fileName}. Listo para subir.`;
+                mensajeCarga.style.display = 'block'; 
+                mensajeCarga.style.color = '#3498db'; 
+            } else {
+                mensajeCarga.textContent = ''; 
+                mensajeCarga.style.display = 'none'; 
+            }
+        });
 
-    metodoDePagoSelect.addEventListener('change', () => {
-        const valorSeleccionado = metodoDePagoSelect.value;
-        mostrarDetallesDePago(valorSeleccionado);
-    });
-
-    function mostrarDetallesDePago(metodo) {
-        const contenidoAMostrar = detallesDePago[metodo] || detallesDePago['default'];
-        contPagoCompraDiv.innerHTML = contenidoAMostrar;
-    }
-
-    mostrarDetallesDePago(metodoDePagoSelect.value);
-});
-    </script>
     
+        miFormulario.addEventListener('submit', () => {
+            
+            if (inputImagen.files.length > 0) {
+                mensajeCarga.textContent = 'Subiendo comprobante... Por favor, espera.';
+                mensajeCarga.style.display = 'block';
+                mensajeCarga.style.color = '#e67e22'; 
+            }
+
+        });
+
+    });
+</script>
     
     
     <footer id="foot">
@@ -295,6 +243,8 @@ Bienvenido a donde los sueños se hacen realidad:
     </div>
 
 </footer>
+
+<script src="{{ asset('js/validate.js') }}"></script>
 
 </body>
 </html>
