@@ -48,10 +48,6 @@
 
                     <a href="#" class="button button_ini">Participar</a>
 
-                    <p class="text_center">
-                        “Aquí no hay suerte, hay propósito. Dios guía cada jugada
-
-y tú solo tienes que jugar pa’ ganar.
 
 
                 </div>
