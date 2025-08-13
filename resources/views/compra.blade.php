@@ -131,8 +131,8 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
                         <option value="Pago movil Banesco" class="input_option">Pago Movil Banesco</option>
                         <option value="Pago movil Banplus" class="input_option">Pago Movil Banplus</option>
                         <option value="Zinli" class="input_option">Zinli</option>
-                        <option value="Paypal" class="input_option">Paypal</option>
                         <option value="Binance" class="input_option">Binance</option>
+                        <option value="Zelle" class="input_option">Zelle</option>
                     </select>
                 </div>
                 <div class="cont_pago_compra">
