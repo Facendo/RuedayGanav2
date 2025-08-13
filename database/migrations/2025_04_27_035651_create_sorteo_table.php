@@ -22,7 +22,7 @@ return new class extends Migration
             $table->json('numeros_ganadores')->nullable();
             $table->date('sorteo_fecha_inicio');
             $table->date('sorteo_fecha_fin');
-            
+            $table->boolean('sorteo_activo')->default(true);
             $table->timestamps();
 
         });

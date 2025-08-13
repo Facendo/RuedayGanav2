@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('descripcion')->nullable();
             $table->date('fecha_pago');
             $table->string('metodo_de_pago');
+            $table->string('nro_telefono');
             $table->string('estado_pago')->default('pendiente');
             $table->string("imagen_comprobante");
         
