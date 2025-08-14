@@ -13,4 +13,5 @@ class Cliente extends Model
     public $incrementing = false;
     public $keytype= 'string';
     public $timestamps = false; 
+
 }
