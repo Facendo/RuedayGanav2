@@ -14,11 +14,10 @@ class SorteoController extends Controller
     
     public function index()
     {
-
         $clientes = Cliente::orderBy('cantidad_comprados', 'desc')->take(5)->get();
+        $clientes_all = Cliente::all();
         $sorteos = Sorteo::all();
-        return view('index', compact('sorteos','clientes'));
-            
+        return view('index', compact('sorteos','clientes','clientes_all'));
     }
 
     
@@ -52,7 +51,18 @@ class SorteoController extends Controller
     }
 
     
-   
+    public function cambio_de_estado(string $id){
+        $sorteo = Sorteo::find($id);
+
+        if($sorteo->sorteo_estado == 1){
+            $sorteo->sorteo_estado = 0;
+        }
+        if($sorteo->sorteo_estado == 0){
+            $sorteo->sorteo_estado = 1;
+        }
+        $sorteo->save();
+        return redirect()->route('sorteo.index');
+    }
     
     /**
      * Update the specified resource in storage.

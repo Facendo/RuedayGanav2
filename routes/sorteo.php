@@ -11,3 +11,4 @@ Route::post('/sorteos/store', [SorteoController::class, 'store'])->name('sorteo.
 Route::get('/admin/sorteos/{sorteo}/edit', [SorteoController::class, 'edit'])->name('sorteo.edit');
 Route::put('/admin/sorteos/{sorteo}', [SorteoController::class, 'update'])->name('sorteo.update');
 Route::delete('/admin/sorteos/{sorteo}', [SorteoController::class, 'destroy'])->name('sorteo.destroy')->middleware('auth');
+Route::post('/sorteos/cambio_estado/{id}', [SorteoController::class, 'cambio_de_estado'])->name('sorteo.cambio_estado')->middleware('auth');
