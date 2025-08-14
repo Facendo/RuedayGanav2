@@ -49,6 +49,7 @@ class ClienteController extends Controller
         $pago->monto = $request->monto;
         $pago->cantidad_de_tickets = $request->cantidad_de_tickets;
         $pago->descripcion = $request->descripcion;
+        $pago->nro_telefono= $cliente->telefono;
         $pago->fecha_pago = $request->fecha_de_pago;
         $pago->metodo_de_pago = $request->metodo_de_pago;
         $pago->estado_pago = "pendiente";
