@@ -54,14 +54,15 @@ class SorteoController extends Controller
     public function cambio_de_estado(string $id){
         $sorteo = Sorteo::find($id);
 
-        if($sorteo->sorteo_estado == 1){
-            $sorteo->sorteo_estado = 0;
+        if($sorteo->sorteo_activo == 1){
+            $sorteo->sorteo_activo = 0;
         }
-        if($sorteo->sorteo_estado == 0){
-            $sorteo->sorteo_estado = 1;
+        else if($sorteo->sorteo_activo == 0){
+            $sorteo->sorteo_activo = 1;
         }
+        
         $sorteo->save();
-        return redirect()->route('sorteo.index');
+        return redirect()->route('pago.index');
     }
     
     /**
@@ -71,11 +72,14 @@ class SorteoController extends Controller
     {
         //Funcion para actualizar un sorteo
         $sorteo->sorteo_nombre = $request->sorteo_nombre;
+        $sorteo->precio_boleto_bs = $request->precio_boleto_bs;
+        $sorteo->precio_boleto_dolar = $request->precio_boleto_dolar;
         $sorteo->sorteo_fecha_inicio = $request->sorteo_fecha_inicio;
         $sorteo->sorteo_fecha_fin= $request->sorteo_fecha_fin;
         
         $sorteo->updated_at = $request->now();
         $sorteo->save();
+        return redirect()->route('pago.index');
     }
 
     /**

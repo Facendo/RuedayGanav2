@@ -13,10 +13,6 @@ class ModeloSeeder extends Seeder
      */
     public function run(): void
     {
-        Cliente::create([
-            'nombre' => 'Juan Perez',
-            'email' => 'juanperez@example.com',
-            'telefono' => '123456789',
-        ]);
+        
     }
 }
