@@ -35,12 +35,19 @@ class TicketController extends Controller
         if($request->filtro=="numero"){
             $tickets = Ticket::whereJsonContains('numeros_seleccionados', $request->contenido)->get();
         }
+        else if($request->filtro=="cedula"){
+            $tickets = Ticket::where('cedula_cliente', 'LIKE', '%' . $request->contenido . '%')->get();
+        }
         else{
             $tickets = Ticket::where('nombre_cliente', 'LIKE', '%' . $request->contenido . '%')->get();
         }
         if ($tickets) {
             return view('admin.ticket', compact('tickets'));
         } 
+        else{
+            $tickets = Ticket::all();
+            return view('admin.ticket', compact('tickets'))->with('error', 'No se encontraron resultados para su búsqueda.');
+        }
     }
     
 

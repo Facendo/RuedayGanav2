@@ -87,15 +87,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     referenciaInput.addEventListener('blur', function() {
-        const referencia = this.value.trim();
-        if (referencia === '') {
-            showError(this, 'La **referencia de pago** es obligatoria.');
-        } else if (isNaN(referencia) || parseInt(referencia) <= 0) {
-            showError(this, 'La **referencia** debe ser un número positivo.');
-        } else {
-            clearError(this);
-        }
-    });
+    const referencia = this.value.trim();
+
+    // 1. Validar que no esté vacío
+    if (referencia === '') {
+        showError(this, 'La **referencia de pago** es obligatoria.');
+    } 
+    // 2. Validar que sean 12 dígitos numéricos
+    else if (!/^\d{12}$/.test(referencia)) {
+        showError(this, 'La **referencia** debe contener exactamente 12 dígitos.');
+    } 
+    // 3. Validar que sea un número positivo (opcional, si se necesita)
+    else if (parseInt(referencia) <= 0) {
+         showError(this, 'La **referencia** debe ser un número positivo.');
+    } 
+    // Si todo es correcto
+    else {
+        clearError(this);
+    }
+});
 
     fechaPagoInput.addEventListener('blur', function() {
         const fecha = this.value;
