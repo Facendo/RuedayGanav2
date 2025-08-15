@@ -20,6 +20,7 @@
                 <div>
                     <label for="filtro">Buscar por:</label>
                     <select id="filtro" name="filtro" class="input_select"  required>
+                        <option value="cedula">Cedula del cliente</option>
                         <option value="numero" class="input_option">Numero de Ticket</option>
                         <option value="cliente" class="input_option">Nombre del Cliente</option>
                     </select>

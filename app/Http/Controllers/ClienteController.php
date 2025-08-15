@@ -20,7 +20,6 @@ class ClienteController extends Controller
     
     public function store(Request $request)
     {   
-       
         if(Cliente::where('cedula', $request->cedula)->exists()){
             $clienteregistrado = Cliente::where('cedula', $request->cedula)->first();
             $clienteregistrado->fecha_de_pago = $request->fecha_de_pago;
@@ -40,7 +39,6 @@ class ClienteController extends Controller
         $cliente->fecha_de_pago = $request->fecha_de_pago; 
         $cliente->id_sorteo = $request->id_sorteo;
         $cliente->save();
-        
         }
         $pago = new Pago();
         $pago->cedula_cliente = $request->cedula;
@@ -49,7 +47,7 @@ class ClienteController extends Controller
         $pago->monto = $request->monto;
         $pago->cantidad_de_tickets = $request->cantidad_de_tickets;
         $pago->descripcion = $request->descripcion;
-        $pago->nro_telefono= $cliente->telefono;
+        $pago->nro_telefono= $request->telefono;
         $pago->fecha_pago = $request->fecha_de_pago;
         $pago->metodo_de_pago = $request->metodo_de_pago;
         $pago->estado_pago = "pendiente";

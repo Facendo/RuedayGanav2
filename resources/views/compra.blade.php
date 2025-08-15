@@ -150,7 +150,7 @@ Una vez confirmado, recibirás tus boletos del sorteo directamente en el correo 
 
                 
                 <label for="referencia">Referencia de pago:</label>
-                <input type="number" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
+                <input type="text" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
                 <label for="fecha_de_pago">Fecha de pago:</label>
                 <input type="date" placeholder="fecha de pago" id="fecha_de_pago" name="fecha_de_pago" class="input_form" required>
                 
