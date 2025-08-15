@@ -68,6 +68,7 @@
     <div class="container">
         @if(count($sorteos) > 0)
             @foreach($sorteos as $sorteo)
+                @if($sorteo->sorteo_activo == 1)
                 <div class="container_card">
                     <div class="card">
                         <figure>
@@ -84,6 +85,11 @@
                         </div>
                     </div>
                 </div>
+                @else
+                    <div class="message_alert message">
+                        <p>Los sorteos están en mantenimiento y no están disponibles en este momento.</p>
+                    </div>
+                @endif
             @endforeach
         @else
             <div class="message_alert message">

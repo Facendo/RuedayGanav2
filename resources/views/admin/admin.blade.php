@@ -52,6 +52,7 @@
                 <thead>
                     <tr>
                         <th>Cedula</th>
+                        <th>Telefono</th>
                         <th>Referencia</th>
                         <th>Comprobante</th>
                         <th>Monto</th>
@@ -69,6 +70,7 @@
                             
                     <tr>
                         <td>{{ $pago->cedula_cliente }}</td>
+                        <td>{{ $pago->nro_telefono }}</td>
                         <td>{{ $pago->referencia }} </td>
                         <td>
                         <form action="{{route('admin.showcomprobante')}}" method="POST" enctype="multipart/form-data">
@@ -184,6 +186,15 @@
                         @endphp
                         <td>{{$cantidad_disponible}}</td>
                         <td>
+                            <form action={{route('sorteo.cambio_estado',$sorteo->id_sorteo)}} method="POST">	
+                                @csrf
+                                @method('PUT')
+                                @if ($sorteo->sorteo_activo == 1)
+                                    <button type="submit" class="button">Desactivar</button>
+                                @else
+                                    <button type="submit" class="button">Activar</button>
+                                @endif
+                            </form>
                             <form action={{route('sorteo.destroy',$sorteo)}} method="POST">	
                                 @csrf
                                 @method('DELETE')
