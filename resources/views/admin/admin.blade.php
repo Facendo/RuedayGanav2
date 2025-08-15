@@ -6,6 +6,9 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cards.css')}}">
+    <link rel="stylesheet" href="{{asset('css/forms.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

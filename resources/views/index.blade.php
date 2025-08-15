@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cards.css')}}">
+    <link rel="stylesheet" href="{{asset('css/forms.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
@@ -18,37 +21,51 @@
 
 <!------------------ TODO EL CONTENIDO DE LA APP  --------------------->
 
-<body>
+<body class="back_rg" style="--bg-image: url('{{ asset('img/backrueda.PNG') }}');" >
 
 <!------------------------- ENCABEZADO -------------------------------->
     
     <header id="header">
         
         <nav id="menu" class="menu">
-                <h2 class="titulo">RUEDA Y GANA</h2>
+                <div class="separador_nav">
+                    <img class="imagen_nav" src="{{asset('img/favicon-32x32.png')}}" alt="imagen">
+                </div>
+                <div class="separador_nav">
+                    <a href="" class="button_nav">Inicio</a>
+                    <a href="" class="button_nav">Participar</a>
+                    <a href="" class="button_nav">Nuestro top</a>
+                    <a href="" class="button_nav button_contact">Contactanos</a>
+                </div>
         </nav>
         
     
-        <div class="container container_header">
-            <div class="container_info container">
-                
-                <div class="container_logo">
+        <div class="container">
+            @foreach($sorteos as $sorteo)
+            <div class="container_info container" >
+             
 
-                    <img src="{{asset('img/logo_ruedaygana_sf.png')}}" class="img_logo" alt="imagenlogo">
-
-                </div>
-                
-                <div class="containertext_presentacion">
+                <div class="container_presentacion">
                     <h1 class="text_presentacion">¡RUEDA Y GANA CON NOSOTROS!</h1>
 
-                    <p class="text_center">“Aquí no hay suerte, hay propósito. Dios guía cada jugada </p>
-                    <p class="text_center">y tú solo tienes que jugar pa’ ganar.</p>
-                    <br>
-                    <p class="text_center">Bienvenido a donde los sueños se hacen realidad: ¡Rueda y Gana con Nosotros!”</p>
+                    <div class="container_content">
 
-                    <a href="#" class="button button_ini">Participar</a>
+                        <div class="container_img_presentacion press">
+                            <img class="imagen_head" src="{{asset('storage/'.$sorteo->sorteo_imagen)}}" alt="imagen">
+                        </div>
 
+                        <div class="content_text_presentacion">
+                            <p class="text_center">“Aquí no hay suerte, hay propósito. Dios guía cada jugada </p>
+                            <p class="text_center">y tú solo tienes que jugar pa’ ganar.</p>
+                            <br>
+                            <p class="text_center">Bienvenido a donde los sueños se hacen realidad: ¡Rueda y Gana con Nosotros!”</p>
+                            <br><br><br><br><br>   
+                            <a href="#premios" class="button button_ini">Participar</a>
+                        </div>
 
+                    </div>
+
+            @endforeach
 
                 </div>
             </div>
@@ -212,6 +229,26 @@
     </section>
 
 
+    <section id="view_tickets">
+        <div class="container">
+
+        <h2 class="section_subtitle">Verifique sus tickets</h2>
+            <div class="cont_form">
+                <form action="" class="form" method="POST" enctype="multipart/form-data">
+                    <h2>Verifique sus tickets por cedula</h2>
+                    @csrf
+
+                    <input type="text" name="busqueda_tickets" id="cedula" placeholder="Busque su ticket" class="input_form" min="0" max="9999">
+
+                    <br>
+
+                    <button type="submit" class="button">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
 <!----------------------- SECCION DE REDES SOCIALES ----------------------------->
     
     
@@ -221,7 +258,7 @@
         <div class="contenido_foot">
             
             <div class="cont_foot foot1">
-                <h2 class="slogan_footer">CERTIFICACIONES</h2>
+                <h2 class="slogan_footer">CERTIFICADOS POR:</h2>
                     <img src="{{asset('img/cert.JPG')}}" class="img_cert" alt="imagenlogo">
                     <img src="{{asset('img/cert2.JPG')}}" class="img_cert" alt="imagenlogo">
                 

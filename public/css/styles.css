@@ -88,10 +88,31 @@ nav.menu{
     height: 10vh;
     background-color: rgb(15, 15, 15);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-around;
 }
 
+.button_nav{
+    width: 7em;
+    height: 3em;
+    border: 1px solid rgb(254, 180, 3);
+    border: none;
+    outline: none;
+    background-color: #0056b3;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white; 
+    border-radius: 25px;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+
+.button_nav:hover{
+    background-color: #0036b3;
+}
 
 h2{
     font-family: sans-serif;
@@ -108,100 +129,77 @@ h3{
    
 }
 
-.container_info{
-    width: 100%;
+.imagen_nav{
+    border-radius: 50%;
+    height: 95%;
+    padding: 2px;
+    border: 1px solid rgb(254, 180, 3);
+}
+
+.separador_nav{
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container_logo, .containertext_presentacion{
+.container_info, .back_rg{
+    background-image: linear-gradient(90deg,rgba(0, 0, 0, 0.80) 20%, rgba(0, 0, 0, 0.7) 94%), var(--bg-image);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-position: top;
+    width: 100%;
+    height: 90vh;
+
+}
+
+.text_presentacion{
+    text-align: center;
+    margin-top: 50px;
+}
+
+ .container_presentacion{
+    width: 100%;
+    height: 100%;    
     display: flex;
     justify-content: center;
     flex-direction: column;
 
 }
 
-/* --------- MOSTRAR TARGETAS DE PREMIOS  -----------   */
-
-
-.img_card{
-    width: 100%;
-    height: 350px;
-    border-radius: 10px 10px 0 0;
-}
-
-
-.container_card{
-    width: 100%;
-    height: 100%;
+.press{
+    width: 40%;
+    height: 60%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
-.card{
-    width: 30%;
-    height: 600px;
-    background-color: rgb(55, 55, 55);  
-    border-radius: 10px;
-    margin: 30px 0;
-}
-
-.title_card{
-    text-align: center;
-    margin: 15px;
-    color: rgb(254, 180, 3)
-}
-
-p.text_card{
-    text-align: center;
-    margin: 15px;
-}
-
-li{
-  margin: 15px;  
-  font-family: "Roboto Mono", monospace;
-}
-
-/* --------- INFRMACION DE PAGO -----------   */
-
-img.logo_bdv{
-    width: 70px;
-    margin: 10px 0 15px 0;
-}
-
-img.logo_bp{
-    width: 150px;
-    margin: 10px 0 15px 0;
-}
-
-img.logo_zin{
-    width: 55px;
-    margin: 10px 0 15px 0;
-}
-
-img.logo_binance{
-    width: 55px;
-    margin: 10px 0 15px 0;
-}
-
-.card_datos{
-    width: 300px;
-    height: 300px;
-    background-color: rgb(55, 55, 55);
-    margin: 30px;  
+.container_content{
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    border-radius: 10px;
 }
 
-.container_datos{
-    width: 80%;
-    height: 80%;
-    text-align: center;
+.imagen_head{
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    padding: 10px;
+    border: 5px solid blue;
+    transition: .3s;
 }
+
+.imagen_head:hover{
+    transform: scale(1.2);
+}
+
+
+
+
 
 
 footer#foot{
@@ -236,8 +234,12 @@ footer#foot{
 }
 
 .img_cert{
-    width: 80%;
+    width: 200px;
+    height: 200px;
     margin: 15px;
+    border-radius: 50%;
+    padding: 7px;
+    border: 5px solid blue;
 }
 
 
@@ -283,6 +285,7 @@ footer#foot{
 
 .text_center{
     font-family: "Roboto Mono", monospace;
+    font-size: 20px;
 }
 
 p{
@@ -296,6 +299,8 @@ h2.section_subtitle{
 h3.title_card, h3{
     font-family: "Cal Sans", sans-serif;
 }
+
+
 
 .button{
     width: 120px;
@@ -311,7 +316,7 @@ h3.title_card, h3{
 
 .button_ini{
     width: 200px;
-    text-align: center;
+    margin: 0 auto;
 }
 
 .contenido{
@@ -324,149 +329,7 @@ h2.slogan_footer{
 }
 
 
-/* ------------ INPUTS---------------------- */
 
-input.input_form{
-    width: 100%;
-    background-color: transparent;
-    border-bottom: 1px solid #000;
-    margin: 0 auto 30px auto;
-    font-size: 15px;
-
-}
-
-
-input{
-    outline: none;
-    border: none;
-    padding: 20px 0 12px 0;
-    margin-bottom: 30px;
-    height: 40px;
-    font-family: "Roboto Mono", monospace;
-    color: rgba(220, 220, 220, 0.5);
-}
-
-.container_reg{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    
-
-}
-
-.cont_reg{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    background-color: rgb(100, 100, 100);
-    border-radius: 10px;
-}
-
-.cont_form{
-    width: 40%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(60, 60, 60);
-    border-radius: 10px;
-}
-
-.cont_form_compra{
-    margin-bottom: 100px;
-    padding: 30px 0;
-}
-
-form.form{
-    width: 60%;
-    margin: 0 auto;
-}
-
-label{
-    font-family: "Roboto Mono", cursive;
-    color: rgb(254, 180, 3);
-    text-align: center;
-    font-size: 12px;
-}
-
-
-.input_select{
-    width:100%;
-    height: 40px;
-    color: rgba(220, 220, 220, 0.5);
-    border: none;
-    outline: none;
-    background-color: transparent;
-    border-bottom: 1px solid #000;
-    margin: 10px auto 15px auto;
-}   
-
-.input_option{
-    width: 100%;
-    height: 30px;
-    color: black;
-    border: none;
-    outline: none;
-    background-color: rgba(254, 180, 3, 0.8);
-    transition: .3s;
-}
-
-.input_file{
-    display: none;
-
-}
-
-.file{
-    
-    display: block;
-    width: 100%;
-    height: 40px;
-    border: 1px solid rgb(254, 180, 3);
-    margin: 10px auto 5px auto;
-    color: white;
-    transition: .2s;
-}
-
-.file:hover{
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: .2s;
-}
-
-.file:active{
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: .2s;
-}
-
-
-.enlace{
-    color: black;
-}
-
-input[type=checkbox]{
-    display: none;
-    margin-bottom: 20px;
-    
-}
-
-.lbl_check{
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    
-}
-
-
-input[type=checkbox]:checked + label{
-     background-color: red;
-     color: white;
-}
-
-
-
-
-/* --------------------------------------- */
 
 
 .section_ventas{
@@ -474,241 +337,7 @@ input[type=checkbox]:checked + label{
     
 }
 
-div.container_table{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-table.table_gestion{
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
-}
 
-th{
-    background-color: rgb(254, 180, 3);
-    color: black;
-    padding: 20px;
-}
-td{
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-    color:white
-}
-
-tr:nth-child(even) td {
-  background-color: rgb(130,130,130);
-}
-
-tr:nth-child(odd) td {
-  background-color: rgb(80,80,80);
-}
-
-.message{
-    width: 60%;
-    border: 1.5px solid rgb(10, 200, 10);
-    background-color: rgb(50, 210, 50, 0.7);
-    margin: 0 auto;
-    text-align: center;
-    padding: 40px;
-    border-radius: 10px;
-    color: #000;
-}
-
-
-
-
-/* ----------------- SECCION DE TICKETS ------------------ */
-
-
-.section_tickets{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.container_tickets{
-    width: 60%;
-
-}
-
-.cont_tickets_selector{
-    width: 40%;
-}
-
-form.form_tickets{
-    width: 90%;
-    margin: 0 auto;
-}
-
-.button:hover{
-    background-color: rgb(169, 149, 0);
-
-}
- .text_footer{
-    color: rgb(100,100,100);
- }
-
-
- /* ---------------MODALES---------------- */
-
- .container_modal{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    background-color: rgba(50,50,50,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: .5s;
- }
-
- .container_imagen_modal{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
-
-  .container_msg_modal{
-    width: 40%;
-    background-color: rgb(77, 78, 73);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
-
- .imagen_modal{
-    width: 400px;
-    height: 700px;
-    border-radius: 10px;
-    
- }
-
- /* ------------------- PAGINACION---------------- */
-
-.pagination {
-    display: block;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 30px;
-    margin: 20px 0;
-}
-
-
-
-.filtro_admin{
-    width: 20%;
-    height: 10%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* --------------------- MAILS-------------------- */
-
-.cont_num_mail{
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
-    background-color: rgb(200, 200, 200);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.mail_p{
-    font-family: "Roboto Mono", monospace;
-}
-
-.title_mail{
-    font-family: "Alfa Slab One", serif;
-}
-
-.barra_cont{
-    width: 100%;
-    padding: 25px;
-    border-radius: 10px;
-    margin: 30px auto;
-    background-color: rgb(55, 55, 55);
-}
-
-.cont_pago_compra{
-    width: 100%;
-    height: 150px;
-    border-radius: 5px;
-    background-color: rgb(100,100,100);
-    padding-bottom: 20px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-.cont_element_calc{
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.calc_pago{
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-evenly;
-    
-}
-
-.cont_cant_boletos{
-    width: 70%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgb(254, 180, 3);
-    border-radius: 5px;
-}
-
-.btn_calc{
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-
-
-.cont_num_mail{
-    width: 90%;
-    padding: 15px;
-    margin: 0 auto;
-    background-color: rgb(220, 220, 200);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-
-
-.mail_p{
-    font-family: "Roboto Mono", monospace;
-    font-family: Arial;
-}
-
-.title_mail{
-    font-family: "Alfa Slab One", serif;
-    font-family: Arial;
-}
 
 
 /* --------------------- compra cambios -------------------- */
@@ -717,7 +346,7 @@ form.form_tickets{
     width: 200px;
     height: 70px;
     display: flex;
-    padding: 20pxs;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     font-weight: bold;
