@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sorteo;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Ticket;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -14,10 +15,10 @@ class SorteoController extends Controller
     
     public function index()
     {
+        $tickets = Ticket::all();
         $clientes = Cliente::orderBy('cantidad_comprados', 'desc')->take(5)->get();
-        $clientes_all = Cliente::all();
         $sorteos = Sorteo::all();
-        return view('index', compact('sorteos','clientes','clientes_all'));
+        return view('index', compact('sorteos','clientes', 'tickets'));
     }
 
     
