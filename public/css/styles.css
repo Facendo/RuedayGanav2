@@ -80,7 +80,10 @@ RGB(10, 180, 171) BLUE COLOR
     padding: 10px;
     border-radius: 10px;
     transition: .3s;
+    display: none;
+
     
+
 }
 
 .button_menu:hover{
@@ -517,8 +520,61 @@ tr.td_top:nth-child(1){
 }
 
 
+.cont_modal {
+
+  transform: translateX(110%);
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  transition: .6s;
+}
 
 
+.ventana_tickets {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 70%; 
+  border-radius: 8px;
+  position: relative; 
+ 
+}
+
+.contenedor_tickets{
+    width: 90%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+}
+
+.x_modal{
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    transition: .3s;
+
+}
+
+.x_modal img{
+    width: 40px;
+    height: 40px;
+}
+
+.x_modal:hover{
+    background-color: #f33;
+}
 
 
 

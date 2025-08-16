@@ -43,7 +43,7 @@
                 <div class="separador_nav">
                     <img class="imagen_nav" src="{{asset('img/favicon-32x32.png')}}" alt="imagen">
                 </div>
-                <div class="separador_nav">
+                <div class="separador_nav menu_pc_exist">
                     <a href="" class="button_nav">Inicio</a>
                     <a href="" class="button_nav">Participar</a>
                     <a href="" class="button_nav">Nuestro top</a>
@@ -275,11 +275,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     <br>
 
-                    <button type="submit" class="button">Buscar</button>
+                    <button type="submit" class="button button_tick">Buscar</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <div class="cont_modal">
+
+        <div class="x_modal">
+            <img src="{{asset('img/x.png')}}" alt="" >
+        </div>
+        <div class="ventana_tickets">
+            <h2>Aqui puede ver sus tickets</h2>
+            <div class="contenedor_tickets">
+
+            </div>
+        </div>
+    </div>
+    
 
 
 <!----------------------- SECCION DE REDES SOCIALES ----------------------------->
@@ -330,19 +344,37 @@ Bienvenido a donde los sueños se hacen realidad:
 </footer>
 </body>
 <script>
-    const tickets = @json($tickets);
-    const cedula = document.getElementById('cedula');
-    const form = document.querySelector('.form');
+const modal = document.querySelector('.cont_modal');
+const closeButton = document.querySelector('.x_modal');
+const openButton = document.querySelector('.button_tick'); 
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        for (const ticket of tickets) {
-            if (ticket.cedula === cedula.value) {
-                alert('Tickets encontrado: ' + JSON.stringify(ticket));
-                return;
-            }
-        }
-        alert('Ticket no encontrado');
-    });
+function openModal(event) {
+    if (event) {
+        event.preventDefault(); 
+    }
+    
+    modal.style.transform = 'translateX(0)';
+    modal.style.display = 'block';
+    
+}
+
+function closeModal() {
+    modal.style.transform = 'translateX(110%)';
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 500);
+}
+
+if (openButton) {
+    openButton.addEventListener('click', openModal);
+}
+
+closeButton.addEventListener('click', closeModal);
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModal();
+    }
+});
 </script>
 </html>
