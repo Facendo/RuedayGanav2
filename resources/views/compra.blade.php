@@ -18,7 +18,20 @@
 </head>
 
 <body>
+@if (session('success'))
+        <div class="message_success" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
 
+    @if ($errors->any())
+        <div class="message_error" role="alert">
+            <strong >¡Ups!</strong>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+        </div>
+    @endif
 <div id="sorteo-data" data-precio-dolar="{{ $sorteo->precio_boleto_dolar }}" data-precio-bs="{{ $sorteo->precio_boleto_bs }}"></div>
 
 <script>

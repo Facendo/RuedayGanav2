@@ -329,4 +329,20 @@ Bienvenido a donde los sueños se hacen realidad:
 
 </footer>
 </body>
+<script>
+    const tickets = @json($tickets);
+    const cedula = document.getElementById('cedula');
+    const form = document.querySelector('.form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        for (const ticket of tickets) {
+            if (ticket.cedula === cedula.value) {
+                alert('Tickets encontrado: ' + JSON.stringify(ticket));
+                return;
+            }
+        }
+        alert('Ticket no encontrado');
+    });
+</script>
 </html>
