@@ -81,6 +81,9 @@ RGB(10, 180, 171) BLUE COLOR
     border-radius: 10px;
     transition: .3s;
     display: none;
+
+    
+
 }
 
 .button_menu:hover{
