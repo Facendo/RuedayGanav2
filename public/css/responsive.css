@@ -1,25 +1,22 @@
  
  /* --------------- header ----------------- */
  
- @media (max-width: 650px) {
+ @media (max-width: 1250px) {
     .container_info{
-        display: block;
+        display: flex;
         width: 100%;
     }
 
-    .img_logo{
-        margin: 0 auto;
+
+    .content_text_presentacion{
+        width: 40%;
     }
 
-    .containertext_presentacion{
-        width: 70%;
-        margin: 0 auto;
+    div.card{
+        width: 50%;
     }
 
-    .card_datos{
-        width: 250px;
-        margin: 30px;
-    }
+
  }
 
 
@@ -38,6 +35,28 @@
         font-size: 10px;
     }
  }
+
+
+
+ @media (max-width: 1000px){
+    
+    .content_img_presentacion{
+        width: 80%;
+        margin: 50px auto 0 auto;
+    }
+
+    .content_text_presentacion{
+        width: 80%;
+    }
+
+    .container_content{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+ }
+
+
 
  @media (max-width: 630px){
     .contenido_foot{

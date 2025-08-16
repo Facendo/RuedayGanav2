@@ -25,6 +25,18 @@
 
 <!------------------------- ENCABEZADO -------------------------------->
     
+<div class="button_menu">
+    <img src="{{asset('img/menu.png')}}" alt="menu_logo">
+</div>
+
+<div class="panel_nav">
+    <a href="#" class="option_panel_nav">Inicio</a>
+    <a href="#" class="option_panel_nav">Participar</a>
+    <a href="#" class="option_panel_nav">Nuestro top</a>
+    <a href="#" class="option_panel_nav">Contactanos</a>
+</div>
+
+
     <header id="header">
         
         <nav id="menu" class="menu">
@@ -50,7 +62,7 @@
 
                     <div class="container_content">
 
-                        <div class="container_img_presentacion press">
+                        <div class="content_img_presentacion press">
                             <img class="imagen_head" src="{{asset('storage/'.$sorteo->sorteo_imagen)}}" alt="imagen">
                         </div>
 
@@ -73,7 +85,28 @@
     
     </header>
         
+    <script>
+        
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const menuButton = document.querySelector('.button_menu');
+    const panelNav = document.querySelector('.panel_nav');
 
+    
+    menuButton.addEventListener('click', function() {
+        panelNav.classList.toggle('show');
+    });
+
+
+    document.addEventListener('click', function(event) {
+        if (!panelNav.contains(event.target) && !menuButton.contains(event.target)) {
+            if (panelNav.classList.contains('show')) {
+                panelNav.classList.remove('show');
+            }
+        }
+    });
+});
+    </script>
 
 
 <!------------------------- SECCION DE PREMIOS ------------------------->
