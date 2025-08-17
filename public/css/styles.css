@@ -473,14 +473,19 @@ img.img_trofeo{
     margin-right: 10px;
 }
 
+thead.table_top_header{
+    background-color: rgba(110, 110, 110, 0.5);
+}
+
 tr.tr_top{
     background-color: rgba(0, 0, 0, 0.4);
     border-collapse: collapse;
 }
 
 .table_top{
+    border-radius: 10px;
     width: 70%;
-    background: linear-gradient(345deg,rgba(35, 35, 35, 0.5) 25%, rgba(102, 92, 3, 1) 68%, rgba(153, 138, 5, 0.87) 100%);
+    background: rgba(0, 0, 0, 0.3);
     border-collapse: collapse;
 }
 
@@ -534,12 +539,12 @@ tr.td_top:nth-child(1){
 
 
 .ventana_tickets {
-  background-color: #fefefe;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 5px 5px 20px 5px gray;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  height: 70%; 
+  width: 80%; 
   border-radius: 8px;
   position: relative; 
  
@@ -547,9 +552,17 @@ tr.td_top:nth-child(1){
 
 .contenedor_tickets{
     width: 90%;
-    height: 100px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(170, 170, 170);
     margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+p.mostrar_data{
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
 }
 
 .x_modal{

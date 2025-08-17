@@ -281,6 +281,9 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </section>
 
+    
+
+    
     <div class="cont_modal">
 
         <div class="x_modal">
@@ -289,12 +292,12 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="ventana_tickets">
             <h2>Aqui puede ver sus tickets</h2>
             <div class="contenedor_tickets">
-
+                <p class="mostrar_data"></p>
             </div>
         </div>
     </div>
     
-
+    
 
 <!----------------------- SECCION DE REDES SOCIALES ----------------------------->
     
@@ -341,12 +344,34 @@ Bienvenido a donde los sueños se hacen realidad:
         </div>
     </div>
 
+    
+
 </footer>
 </body>
+
 <script>
+
+
+const tick = @json($tickets);
+
 const modal = document.querySelector('.cont_modal');
 const closeButton = document.querySelector('.x_modal');
 const openButton = document.querySelector('.button_tick'); 
+const muestra = document.querySelector('.mostrar_data');
+
+
+
+openButton.addEventListener('click', ()=>{
+    const inputValue = document.getElementById('cedula').value;
+    tick.forEach(ticket =>{
+        if(ticket.cedula_cliente === inputValue) {
+            const tick = JSON.parse(ticket.numeros_seleccionados);
+            muestra.innerHTML = tick.join(', ');
+            console.log(ticket);
+        }
+        
+    })
+})
 
 function openModal(event) {
     if (event) {
@@ -377,4 +402,6 @@ window.addEventListener('click', (event) => {
     }
 });
 </script>
+
+
 </html>

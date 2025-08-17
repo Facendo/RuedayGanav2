@@ -44,7 +44,83 @@
     </div>
 
     
+    <div class="cont_modal">
 
+        <div class="x_modal">
+            <img src="{{asset('img/x.png')}}" alt="" >
+        </div>
+        <div class="container_edit">
+            <h2>Editar Sorteo</h2>
+            <div class="cont_form">
+                <form action="{{route('sorteo.store')}}" class="form_reg_sorteo form" method="POST" enctype="multipart/form-data">
+                    <h3 class="sub_inp">Registra sorteo</h3>
+                    @csrf
+                    <label for="sorteo_nombre">Nombre:</label>
+                    <input type="text" name="sorteo_nombre" id="sorteo_nombre" placeholder="Nombre del sorteo" class="input_form" require>
+                    <label for="sorteo_fecha_inicio">Fecha de inicio:</label>
+                    <input type="date" name="sorteo_fecha_inicio" id="sorteo_fecha_inicio" placeholder="Fecha de inicio del sorteo" class="input_form" require>
+                    <label for="sorteo_fecha_fin">Fecha de fin:</label>
+                    <input type="date" name="sorteo_fecha_fin" id="sorteo_fecha_fin" placeholder="Fecha de fin del sorteo" class="input_form" require>
+                    <label for="sorteo_descripcion">Descripcion:</label>
+                    <input type="text" name="sorteo_descripcion" id="sorteo_descripcion" placeholder="Descripcion del sorteo" class="input_form" require>
+
+                    <label for="precio_boleto_bs">Precio boleto (bs):</label>
+                    <input type="text" name="precio_boleto_bs" id="precio_boleto_bs" placeholder="Precio del boleto en bolivares" class="input_form" require>
+                    <label for="precio_boleto_dolar">Precio boleto (dolar):</label>
+                    <input type="text" name="precio_boleto_dolar" id="precio_boleto_dolar" placeholder="Precio del boleto en dolares" class="input_form" require>
+                    <label for="sorteo_imagen" class="file">Imagen:</label>
+                    <input type="file" name="sorteo_imagen" id="sorteo_imagen" placeholder="Imagen del sorteo" class="input_file" accept="image/*" require>
+                    
+                    <br>
+
+                    <button type="submit" class="btn_reg_sorteo button">Registrar sorteo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+const modal = document.querySelector('.cont_modal');
+const closeButton = document.querySelector('.x_modal');
+const openButton = document.querySelector('.button_edit'); 
+
+openButton.addEventListener('click', (e)=>{
+    e.preventDefault();
+})
+
+function openModal(event) {
+    if (event) {
+        event.preventDefault(); 
+    }
+    
+    modal.style.transform = 'translateX(0)';
+    modal.style.display = 'block';
+    
+}
+
+function closeModal() {
+    modal.style.transform = 'translateX(110%)';
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 500);
+}
+
+if (openButton) {
+    openButton.addEventListener('click', openModal);
+}
+
+closeButton.addEventListener('click', closeModal);
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+    </script>
     
 
     <div id="section_ventas_admin" class="container section_ventas">
@@ -92,7 +168,7 @@
                             <form action={{route('pago.destroy',$pago->id_pago)}} method="POST">	
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="button">Eliminar</button>
+                                <button type="submit" class="button button_edit">Editar</button>
                             </form>
                         </td>
                         <td>
