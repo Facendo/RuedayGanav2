@@ -165,7 +165,7 @@ window.addEventListener('click', (event) => {
                         <td>{{ $pago->metodo_de_pago}}</td>
                         <td>{{ $pago->estado_pago }}</td>
                         <td>
-                            <form action="{{route('pago.edit',$pago->id_pago)}}" method="POST">	
+                            <form action="" method="POST">	
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button button_edit">Editar</button>
