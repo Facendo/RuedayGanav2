@@ -66,34 +66,7 @@
             <div class="selector_ticket">10 tickets</div>
             <div class="selector_ticket">20 tickets</div>
             <div class="selector_ticket">50 tickets</div>
-        
-
-<script src="{{asset('js/data_pago.js')}}"></script>
-
-
-<script>
-    //Funcion para precargar los datos del cliente
-    const clientes= @json($clientes);
-
-    inputCedula= document.getElementById('cedula');
-
-   inputCedula.addEventListener('input', () => {
-       const cedula = inputCedula.value;
-       const cliente = clientes.find(c => c.cedula === cedula);
-       if (cliente) {
-           document.getElementById('nombre_y_apellido').value = cliente.nombre_y_apellido;
-           document.getElementById('telefono').value = cliente.telefono;
-           document.getElementById('correo').value = cliente.correo;
-       }
-   });
-</script>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const inputImagen = document.getElementById('imagen_comprobante');
-        const mensajeCarga = document.getElementById('mensajeCargaImagen');
-        const miFormulario = document.querySelector('.form'); 
+        </div>
 
         <div class="cont_counter">
             <div class="counter_btn" id="resta">-</div>
@@ -103,6 +76,7 @@
 
         <h3 class="monto"></h3>
 
+    </div>
 
     <div class="cont_input">
         <h2>Datos de compra</h2>
@@ -131,7 +105,6 @@
     </div>
 
     <input type="hidden" id="metodo_pago_seleccionado" name="metodo_pago_seleccionado" required>
-    <input type="hidden" id="metodo_pago_seleccionado" name="metodo_de_pago" value="zili" required>
 
     <label for="referencia">Referencia de pago:</label>
     <input type="text" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
