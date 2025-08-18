@@ -158,7 +158,103 @@
 </section>
 
 <script src="{{asset('js/data_pago.js')}}"></script>
+
+
+
+<script>
+    //Funcion para precargar los datos del cliente
+    const clientes= @json($clientes);
+
+    inputCedula= document.getElementById('cedula');
+
+   inputCedula.addEventListener('input', () => {
+       const cedula = inputCedula.value;
+       const cliente = clientes.find(c => c.cedula === cedula);
+       if (cliente) {
+           document.getElementById('nombre_y_apellido').value = cliente.nombre_y_apellido;
+           document.getElementById('telefono').value = cliente.telefono;
+           document.getElementById('correo').value = cliente.correo;
+       }
+   });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputImagen = document.getElementById('imagen_comprobante');
+        const mensajeCarga = document.getElementById('mensajeCargaImagen');
+        const miFormulario = document.querySelector('.form'); 
+
+        
+        inputImagen.addEventListener('change', () => {
+            if (inputImagen.files.length > 0) {
+                const fileName = inputImagen.files[0].name;
+                mensajeCarga.textContent = `Archivo seleccionado: ${fileName}. Listo para subir.`;
+                mensajeCarga.style.display = 'block'; 
+                mensajeCarga.style.color = '#3498db'; 
+            } else {
+                mensajeCarga.textContent = ''; 
+                mensajeCarga.style.display = 'none'; 
+            }
+        });
+
+    
+        miFormulario.addEventListener('submit', () => {
+            
+            if (inputImagen.files.length > 0) {
+                mensajeCarga.textContent = 'Subiendo comprobante... Por favor, espera.';
+                mensajeCarga.style.display = 'block';
+                mensajeCarga.style.color = '#e67e22'; 
+            }
+
+        });
+
+    });
+</script>
+    
+    
+    <footer id="foot">
+
+    <div class="container">
+        <div class="contenido_foot">
+            
+
+            <div class="cont_foot foot2">
+                <h2 class="slogan_footer">GRACIAS POR VISITAR</h2>
+                <p class="text_footer">“Aquí no hay suerte, hay propósito.
+Dios guía cada jugada y tú solo tienes que jugar pa’ ganar.
+Bienvenido a donde los sueños se hacen realidad:
+¡Rueda y Gana con Nosotros!”</p>
+            </div>
+            
+            <div class="cont_foot foot3">
+                <h2 class="slogan_footer">Redes Sociales</h2>
+                <a href="https://www.instagram.com/carlitospaz0?igsh=czNscDg4dGxwejI3"><img src="{{asset('img/instagram.png')}}" alt="instagram.pnp" class="icon_contact"></a>
+                <a href="https://www.tiktok.com/@enriquepaz.01?_t=ZM-8wKbc4qvL7v&_r=1"><img src="{{asset('img/tik-tok.png')}}" alt="tiktok.pnp" class="icon_contact"></a>
+                <a href="https://api.whatsapp.com/send?phone=584248676344&text=Hola%2C%20Quisiera%20comunicarme%20con%20rueda%20y%20gana.com"><img src="{{asset('img/whatsapp.png')}}" alt="whatsapp.pnp" class="icon_contact"></a>
+            </div>
+
+
+            <div class="cont_foot foot4">
+            <h2 class="slogan_footer">Consulte:</h2> <br> 
+
+                <p class="text_footer">Antes de realizar alguna operacion, visite nuestros <br>
+                     <a href="{{Route("terminos")}}" class="enlace"> Terminos y Condiciones</a> y <a href="{{Route("politica")}}"" class="enlace">Politicas de privacidad</a>
+                </p>
+                <br>
+                <p class="text_footer">© 2025 Rueda y Gana con Nosotros. Todos los derechos reservados.</p>
+                
+            </div>
+
+        </div>
+    </div>
+
+</footer>
+
+<script src="{{ asset('js/validate.js') }}"></script>
+=========
 <script src="{{asset('js/manejo_tickets.js')}}"></script>
+>>>>>>>>> Temporary merge branch 2
 
 </body>
 </html>
