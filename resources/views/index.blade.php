@@ -380,7 +380,6 @@ function openModal(event) {
     
     modal.style.transform = 'translateX(0)';
     modal.style.display = 'block';
-    
 }
 
 function closeModal() {
