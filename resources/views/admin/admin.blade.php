@@ -52,8 +52,8 @@
         <div class="container_edit">
             <h2>Editar Sorteo</h2>
             <div class="cont_form">
-                <form action="{{route('sorteo.store')}}" class="form_reg_sorteo form" method="POST" enctype="multipart/form-data">
-                    <h3 class="sub_inp">Registra sorteo</h3>
+                <form action="" class="form_reg_sorteo form" method="POST" enctype="multipart/form-data">
+                    <h3 class="sub_inp">Editar sorteo</h3>
                     @csrf
                     <label for="sorteo_nombre">Nombre:</label>
                     <input type="text" name="sorteo_nombre" id="sorteo_nombre" placeholder="Nombre del sorteo" class="input_form" require>
@@ -165,7 +165,7 @@ window.addEventListener('click', (event) => {
                         <td>{{ $pago->metodo_de_pago}}</td>
                         <td>{{ $pago->estado_pago }}</td>
                         <td>
-                            <form action={{route('pago.destroy',$pago->id_pago)}} method="POST">	
+                            <form action="" method="POST">	
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button button_edit">Editar</button>

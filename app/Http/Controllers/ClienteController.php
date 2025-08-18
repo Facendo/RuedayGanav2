@@ -14,8 +14,9 @@ class ClienteController extends Controller
 {
     public function index(int $id_sorteo)
     {
+        $clientes = Cliente::all();
         $sorteo= Sorteo::find($id_sorteo);
-        return view('compra', compact('sorteo'));
+        return view('compra', compact('sorteo', 'clientes'));
     }
     
     public function store(Request $request)
