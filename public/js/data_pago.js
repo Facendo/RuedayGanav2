@@ -1,64 +1,63 @@
-
-
-   document.addEventListener('DOMContentLoaded', () => {
-    const metodoDePagoSelect = document.getElementById('metodo_de_pago');
+document.addEventListener('DOMContentLoaded', () => {
+    const iconsPagoDiv = document.querySelector('.icons_pago');
     const contPagoCompraDiv = document.querySelector('.data_p');
+    const metodoPagoInput = document.getElementById('metodo_pago_seleccionado');
 
+    // Asegúrate de que estas variables estén definidas en tu plantilla Blade
+    // Por ejemplo:
+    // <script> window.AppConfig = { copyIconUrl: '...', successIconUrl: '...', errorIconUrl: '...' }; </script>
     const copyIconUrl = window.AppConfig.copyIconUrl;
     const successIconUrl = window.AppConfig.successIconUrl;
     const errorIconUrl = window.AppConfig.errorIconUrl;
 
-    function createCopyableData(labelText, dataValue) {
-        const p = document.createElement('p');
-        p.classList.add('data');
-
-        p.innerHTML = `${labelText}: <span class="copyable-text">${dataValue}</span> <img src="${copyIconUrl}" class="copy-icon" data-text="${dataValue}" alt="Copiar" title="Copiar al portapapeles">`;
-        return p.outerHTML;
-    }
-
     const detallesDePago = {
-        'Pago movil Banesco': `
-            <h3>Pago Móvil Banesco</h3>
-            ${createCopyableData('Banco', '0134')}
-            ${createCopyableData('C.I.', '28.407.272')}
-            ${createCopyableData('Tlf', '0424-8676344')}
-        `,
-        'Pago movil Banplus': `
-            <h3>Pago Móvil Banplus</h3>
-            ${createCopyableData('Banco', '0174')}
-            ${createCopyableData('C.I.', '28.588.823')}
-            ${createCopyableData('Tlf', '0412-9425624')}
-        `,
-        'Zinli': `
-            <h3>Zinli</h3>
-            ${createCopyableData('Nombre', 'Jesus Melean')}
-            ${createCopyableData('Correo', 'rocktoyonyo@gmail.com')}
-        `,
-        'Binance': `
-            <h3>Binance</h3>
-            ${createCopyableData('Nombre', 'Jesus Melean')}
-            ${createCopyableData('Correo', 'rocktoyonyo@gmail.com')}
-            ${createCopyableData('ID', '163593375')}
-        `,
-        
-        'Zelle': `
-            <h3>Zelle</h3>
-            ${createCopyableData('Nombre', 'Aquiles Guacaran')}
-            ${createCopyableData('Correo', 'Aquilesg6@gmail.com')}
-            <p class="data"><b>Importante</b>: Colocar en Asunto: pago</p>
-        `,
-        'n': `<p>Por favor, selecciona un método de pago para ver los detalles.</p>`,
-        'default': `<p>Por favor, selecciona un método de pago para ver los detalles.</p>`
+        'Pago movil Banesco': [
+            { label: 'Banco', data: '0134' },
+            { label: 'C.I.', data: '28.407.272' },
+            { label: 'Tlf', data: '0424-8676344' }
+        ],
+        'Pago movil Banplus': [
+            { label: 'Banco', data: '0174' },
+            { label: 'C.I.', data: '28.588.823' },
+            { label: 'Tlf', data: '0412-9425624' }
+        ],
+        'Zinli': [
+            { label: 'Nombre', data: 'Jesus Melean' },
+            { label: 'Correo', data: 'rocktoyonyo@gmail.com' }
+        ],
+        'Binance': [
+            { label: 'Nombre', data: 'Jesus Melean' },
+            { label: 'Correo', data: 'rocktoyonyo@gmail.com' },
+            { label: 'ID', data: '163593375' }
+        ],
+        'Zelle': [
+            { label: 'Nombre', data: 'Aquiles Guacaran' },
+            { label: 'Correo', data: 'Aquilesg6@gmail.com' }
+        ]
     };
 
-    metodoDePagoSelect.addEventListener('change', () => {
-        const valorSeleccionado = metodoDePagoSelect.value;
-        mostrarDetallesDePago(valorSeleccionado);
-    });
+    function createCopyableData(labelText, dataValue) {
+        return `<p class="data">${labelText}: <span class="copyable-text">${dataValue}</span> <img src="${copyIconUrl}" class="copy-icon" data-text="${dataValue}" alt="Copiar" title="Copiar al portapapeles"></p>`;
+    }
 
     function mostrarDetallesDePago(metodo) {
-        const contenidoAMostrar = detallesDePago[metodo] || detallesDePago['default'];
+        let contenidoAMostrar = '';
+
+        if (detallesDePago[metodo]) {
+            contenidoAMostrar += `<h3>${metodo}</h3>`;
+            detallesDePago[metodo].forEach(item => {
+                contenidoAMostrar += createCopyableData(item.label, item.data);
+            });
+            // Agrega el mensaje especial para Zelle si es el método seleccionado
+            if (metodo === 'Zelle') {
+                contenidoAMostrar += `<p class="data"><b>Importante</b>: Colocar en Asunto: pago</p>`;
+            }
+        } else {
+            contenidoAMostrar = `<p>Por favor, selecciona un método de pago para ver los detalles.</p>`;
+        }
+
         contPagoCompraDiv.innerHTML = contenidoAMostrar;
+        metodoPagoInput.value = metodo;
         addCopyListeners();
     }
 
@@ -67,65 +66,19 @@
         copyIcons.forEach(icon => {
             icon.addEventListener('click', (event) => {
                 const textToCopy = event.target.dataset.text;
-
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(textToCopy)
-                        .then(() => {
-                            const originalSrc = icon.src;
-                            const originalTitle = icon.title;
-                            icon.src = successIconUrl;
-                            icon.title = '¡Copiado!';
-                            setTimeout(() => {
-                                icon.src = originalSrc;
-                                icon.title = originalTitle;
-                            }, 1500);
-                        })
-                        .catch(err => {
-                            console.error('Error al copiar el texto con la API del portapapeles: ', err);
-                            const originalSrc = icon.src;
-                            const originalTitle = icon.title;
-                            icon.src = errorIconUrl;
-                            icon.title = 'Error al copiar';
-                            setTimeout(() => {
-                                icon.src = originalSrc;
-                                icon.title = originalTitle;
-                            }, 1500);
-                        });
-                } else {
-                    // Fallback para navegadores antiguos
-                    const textarea = document.createElement('textarea');
-                    textarea.value = textToCopy;
-                    textarea.style.position = 'fixed';
-                    textarea.style.top = '0';
-                    textarea.style.left = '0';
-                    textarea.style.opacity = '0';
-                    document.body.appendChild(textarea);
-                    textarea.focus();
-                    textarea.select();
-                    try {
-                        const successful = document.execCommand('copy');
-                        if (successful) {
-                            const originalSrc = icon.src;
-                            const originalTitle = icon.title;
-                            icon.src = successIconUrl;
-                            icon.title = '¡Copiado!';
-                            setTimeout(() => {
-                                icon.src = originalSrc;
-                                icon.title = originalTitle;
-                            }, 1500);
-                        } else {
-                            console.error('Error al copiar el texto con execCommand.');
-                            const originalSrc = icon.src;
-                            const originalTitle = icon.title;
-                            icon.src = errorIconUrl;
-                            icon.title = 'Error al copiar';
-                            setTimeout(() => {
-                                icon.src = originalSrc;
-                                icon.title = originalTitle;
-                            }, 1500);
-                        }
-                    } catch (err) {
-                        console.error('No se pudo copiar el texto con execCommand: ', err);
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        const originalSrc = icon.src;
+                        const originalTitle = icon.title;
+                        icon.src = successIconUrl;
+                        icon.title = '¡Copiado!';
+                        setTimeout(() => {
+                            icon.src = originalSrc;
+                            icon.title = originalTitle;
+                        }, 1500);
+                    })
+                    .catch(err => {
+                        console.error('Error al copiar el texto: ', err);
                         const originalSrc = icon.src;
                         const originalTitle = icon.title;
                         icon.src = errorIconUrl;
@@ -134,12 +87,22 @@
                             icon.src = originalSrc;
                             icon.title = originalTitle;
                         }, 1500);
-                    }
-                    document.body.removeChild(textarea);
-                }
+                    });
             });
         });
     }
 
-    mostrarDetallesDePago(metodoDePagoSelect.value);
+    iconsPagoDiv.addEventListener('click', (event) => {
+        if (event.target.tagName === 'IMG') {
+            const selectedMetodo = event.target.dataset.metodo;
+            mostrarDetallesDePago(selectedMetodo);
+            
+            const allImages = iconsPagoDiv.querySelectorAll('img');
+            allImages.forEach(img => img.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+    });
+
+    // Estado inicial
+    mostrarDetallesDePago('default');
 });
