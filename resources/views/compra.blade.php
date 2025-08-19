@@ -106,8 +106,7 @@
                 <p>Por favor, selecciona un método de pago para ver los detalles.</p>
             </div>
 
-            <input type="hidden" id="metodo_pago_seleccionado" name="metodo_pago_seleccionado" required>
-            <input type="hidden" id="metodo_pago_seleccionado" name="metodo_de_pago" value="zili" required>
+    <input type="hidden" id="metodo_pago_seleccionado" name="metodo_pago_seleccionado" required>
 
             <label for="referencia">Referencia de pago:</label>
             <input type="text" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>

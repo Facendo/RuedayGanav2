@@ -53,7 +53,7 @@ class ClienteController extends Controller
             $pago->descripcion = $request->descripcion;
             $pago->nro_telefono= $request->telefono;
             $pago->fecha_pago = $request->fecha_de_pago;
-            $pago->metodo_de_pago = $request->metodo_de_pago;
+            $pago->metodo_de_pago = $request->metodo_pago_seleccionado;
             $pago->estado_pago = "pendiente";
                 if ($request->hasFile('imagen_comprobante')) {
                 $image = $request->file('imagen_comprobante');
