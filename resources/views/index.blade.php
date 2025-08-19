@@ -72,7 +72,7 @@
                             <br>
                             <p class="text_center">Bienvenido a donde los sueños se hacen realidad: ¡Rueda y Gana con Nosotros!”</p>
                             <br><br><br><br><br>   
-                            <a href="#premios" class="button button_ini">Participar</a>
+                            <a href="#premios" class="button button_ini submit_btn">Participar</a>
                         </div>
 
                     </div>
@@ -131,7 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="contenido">
                             <h3 class="title_card">{{$sorteo->sorteo_nombre}}</h3>
                             <p class="text_card">{{$sorteo->sorteo_descripcion}}</p>
-                            <a href="{{ route('compra', $sorteo->id_sorteo) }}" class="button">Participar</a>
+                            <br><br><br>
+                            <a href="{{ route('compra', $sorteo->id_sorteo) }}" class="button submit_btn">Participar</a>
                         </div>
                     </div>
                 </div>
@@ -265,18 +266,22 @@ document.addEventListener('DOMContentLoaded', function() {
     <section id="view_tickets">
         <div class="container">
 
-        <h2 class="section_subtitle">Verifique sus tickets</h2>
-            <div class="cont_form">
-                <form action="" class="form" method="POST" enctype="multipart/form-data">
-                    <h2>Verifique sus tickets por cedula</h2>
-                    @csrf
+            <h2 class="section_subtitle">Verifique sus tickets</h2>
+            <div class="container_reg">
+                <div class="cont_form">
+                    <form action="" class="form content_form" method="POST" enctype="multipart/form-data">
+                        <div class="header">
+                            <h1>Verifique sus tickets por cedula</h1>
+                        </div>
+                        @csrf
 
-                    <input type="text" name="busqueda_tickets" id="cedula" placeholder="Busque su ticket" class="input_form" min="0" max="9999">
+                        <input type="text" name="busqueda_tickets" id="cedula" placeholder="Busque su ticket" class="input_form" min="0" max="9999">
 
-                    <br>
+                        <br>
 
-                    <button type="submit" class="button button_tick">Buscar</button>
-                </form>
+                        <button type="submit" class="button button_tick submit_btn">Buscar</button>
+                    </form>
+            </div>
             </div>
         </div>
     </section>

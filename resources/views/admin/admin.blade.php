@@ -206,8 +206,10 @@ window.addEventListener('click', (event) => {
     <h2 class="section_subtitle">REGISTRAR SORTEO</h2>
     <div class="container_reg">
             <div class="cont_form">
-                <form action="{{route('sorteo.store')}}" class="form_reg_sorteo form" method="POST" enctype="multipart/form-data">
-                    <h3 class="sub_inp">Registra sorteo</h3>
+                <form action="{{route('sorteo.store')}}" class="form_reg_sorteo form content_form" method="POST" enctype="multipart/form-data">
+                    <div class="header">
+                        <h1>Registra sorteo</h1>
+                    </div>
                     @csrf
                     <label for="sorteo_nombre">Nombre:</label>
                     <input type="text" name="sorteo_nombre" id="sorteo_nombre" placeholder="Nombre del sorteo" class="input_form" require>
@@ -227,7 +229,7 @@ window.addEventListener('click', (event) => {
                     
                     <br>
 
-                    <button type="submit" class="btn_reg_sorteo button">Registrar sorteo</button>
+                    <button type="submit" class="btn_reg_sorteo button submit_btn">Registrar sorteo</button>
                 </form>
             </div>
         
@@ -296,8 +298,10 @@ window.addEventListener('click', (event) => {
 <div class="container_reg">
     
             <div class="cont_form">
-                <form action="{{route('premio.store')}}" class="form_reg_sorteo form" method="POST" enctype="multipart/form-data">
-                    <h3 class="sub_inp">Asigna premios</h3>
+                <form action="{{route('premio.store')}}" class="form_reg_sorteo form content_form" method="POST" enctype="multipart/form-data">
+                    <div class="header">
+                        <h1>Asigna premios</h1>
+                    </div>
                     @csrf
                    
                         
@@ -319,7 +323,7 @@ window.addEventListener('click', (event) => {
                     <label for="premio_imagen" class="file">Imagen del premio:</label>
                     <input type="file" name="premio_imagen" id="premio_imagen" placeholder="Imagen de premio" class="input_file">
                     <br>
-                    <button type="submit" class="btn_reg_sorteo button">Registrar Premio</button>
+                    <button type="submit" class="btn_reg_sorteo button submit_btn">Registrar Premio</button>
                 </form>
             </div>
     </div>

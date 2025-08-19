@@ -3,9 +3,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+
+        
+
+
         :root {
             --dark-orange: #e57200;
             --orange: #ff9100;
+             --selected_red: #db322cff;
             --light-orange: #ffe0b2;
             --dark-blue: #001f3f;
             --blue: #007bff;
@@ -43,7 +48,8 @@
             background-color: var(--orange);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .header h1 {
@@ -68,6 +74,7 @@
         }
 
         .selector_ticket {
+            width: 90%;
             background-color: rgba(255, 255, 255, 0.2);
             border: 2px solid white;
             color: white;
@@ -75,7 +82,7 @@
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: 0.3s;
         }
 
         .selector_ticket:hover {
@@ -129,7 +136,7 @@
         }
 
         .cont_input {
-            background-color: rgb(180, 180, 180);
+            background-color: rgb(70, 70, 70);
             color: var(--text-color);
             margin: 20px;
             padding: 20px;
@@ -163,11 +170,13 @@
 
         .content_form input,
         .content_form select {
+            background: transparent;
             width: 100%;
             padding: 8px;
             border: 1px solid var(--light-grey);
             border-radius: 5px;
             font-size: 0.9rem;
+            color: white;
         }
 
         .content_form input:focus,
@@ -198,9 +207,15 @@
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: 0.3s;
             margin-top: 20px;
             width: 100%;
+        }
+
+        .container_reg{
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
         .submit_btn:hover {
@@ -224,6 +239,9 @@
             height: auto;
             margin-bottom: 10px;
         }
+        .form{
+            padding: 20px;
+        }
 
         @media (max-width: 480px) {
             .ticket-options {
@@ -234,3 +252,13 @@
                 grid-template-columns: 1fr;
             }
         }
+
+
+        
+
+
+
+
+
+
+        
