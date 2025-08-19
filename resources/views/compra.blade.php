@@ -52,79 +52,83 @@
 
 <section id="compra" class="container container_compra">
     
-    <form action="{{route("cliente.store")}}" method="POST" class="cont_form" enctype="multipart/form-data">
-    <input type="hidden" id="cantidad_de_tickets" name="cantidad_de_tickets" required>
-    <input type="hidden" id="monto" name="monto" required>
-    <div class="header">
-        <h1>Seleccionar los tickets</h1>
-    </div>
-    @csrf
-    <input type="hidden" id="id_sorteo" name="id_sorteo" value="{{$sorteo->id_sorteo}}" required>
-    <div class="contador_tickets">
-        <div class="container_tick">
-            <div class="selector_ticket">5 tickets</div>
-            <div class="selector_ticket">10 tickets</div>
-            <div class="selector_ticket">20 tickets</div>
-            <div class="selector_ticket">50 tickets</div>
-        </div>
+    <div class="cont_form">
 
-        <div class="cont_counter">
-            <div class="counter_btn" id="resta">-</div>
-            <div class="counter_value cant_boletos">0</div>
-            <div class="counter_btn" id="suma">+</div>
-        </div>
+        <form action="{{route("cliente.store")}}" method="POST" class="cont_form" enctype="multipart/form-data">
+            <input type="hidden" id="cantidad_de_tickets" name="cantidad_de_tickets" required>
+            <input type="hidden" id="monto" name="monto" required>
+            <div class="header">
+                <h1>Seleccionar los tickets</h1>
+            </div>
+            @csrf
+            <input type="hidden" id="id_sorteo" name="id_sorteo" value="{{$sorteo->id_sorteo}}" required>
+            <div class="contador_tickets">
+                <div class="container_tick">
+                    <div class="selector_ticket">5 tickets</div>
+                    <div class="selector_ticket">10 tickets</div>
+                    <div class="selector_ticket">20 tickets</div>
+                    <div class="selector_ticket">50 tickets</div>
+                </div>
 
-        <h3 class="monto"></h3>
+                <div class="cont_counter">
+                    <div class="counter_btn" id="resta">-</div>
+                    <div class="counter_value cant_boletos">0</div>
+                    <div class="counter_btn" id="suma">+</div>
+                </div>
 
-    </div>
+                <h3 class="monto"></h3>
 
-    <div class="cont_input">
-        <h2>Datos de compra</h2>
+            </div>
 
-       <div class="content_form">
-    <label for="cedula">Cedula:</label>
-    <input type="text" placeholder="cedula" id="cedula" name="cedula" required>
-    <label for="nombre_y_apellido">Nombre y Apellido:</label>
-    <input type="text" placeholder="nombre y apellido" id="nombre_y_apellido" name="nombre_y_apellido" required>
-    <label for="telefono">Telefono:</label>
-    <input type="text" placeholder="telefono" id="telefono" name="telefono" required>
-    <label for="correo">Correo:</label>
-    <input type="text" placeholder="correo" id="correo" name="correo" required>
+            <div class="cont_input">
+                <h2>Datos de compra</h2>
 
-    <label>METODO DE PAGO</label>
-    <div class="icons_pago">
-        <img src="{{asset('img/banesco_logo.png')}}" alt="Pago Móvil Banesco" data-metodo="Pago movil Banesco">
-        <img src="{{asset('img/banplus_logo.png')}}" alt="Pago Móvil Banplus" data-metodo="Pago movil Banplus">
-        <img src="{{asset('img/zelle_logo.webp')}}" alt="Zelle" data-metodo="Zelle">
-        <img src="{{asset('img/binance_logo.png')}}" alt="Binance" data-metodo="Binance">
-        <img src="{{asset('img/zinli_logo.png')}}" alt="Zinli" data-metodo="Zinli">
-    </div>
-    
-    <div class="data_p">
-        <p>Por favor, selecciona un método de pago para ver los detalles.</p>
-    </div>
+            <div class="content_form">
+            <label for="cedula">Cedula:</label>
+            <input type="text" placeholder="cedula" id="cedula" name="cedula" required>
+            <label for="nombre_y_apellido">Nombre y Apellido:</label>
+            <input type="text" placeholder="nombre y apellido" id="nombre_y_apellido" name="nombre_y_apellido" required>
+            <label for="telefono">Telefono:</label>
+            <input type="text" placeholder="telefono" id="telefono" name="telefono" required>
+            <label for="correo">Correo:</label>
+            <input type="text" placeholder="correo" id="correo" name="correo" required>
+
+            <label>METODO DE PAGO</label>
+            <div class="icons_pago">
+                <img src="{{asset('img/banesco_logo.png')}}" alt="Pago Móvil Banesco" data-metodo="Pago movil Banesco">
+                <img src="{{asset('img/banplus_logo.png')}}" alt="Pago Móvil Banplus" data-metodo="Pago movil Banplus">
+                <img src="{{asset('img/zelle_logo.webp')}}" alt="Zelle" data-metodo="Zelle">
+                <img src="{{asset('img/binance_logo.png')}}" alt="Binance" data-metodo="Binance">
+                <img src="{{asset('img/zinli_logo.png')}}" alt="Zinli" data-metodo="Zinli">
+            </div>
+            
+            <div class="data_p">
+                <p>Por favor, selecciona un método de pago para ver los detalles.</p>
+            </div>
 
     <input type="hidden" id="metodo_pago_seleccionado" name="metodo_pago_seleccionado" required>
 
-    <label for="referencia">Referencia de pago:</label>
-    <input type="text" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
-    <label for="fecha_de_pago">Fecha de pago:</label>
-    <input type="date" placeholder="fecha de pago" id="fecha_de_pago" name="fecha_de_pago" class="input_form" required>
+            <label for="referencia">Referencia de pago:</label>
+            <input type="text" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
+            <label for="fecha_de_pago">Fecha de pago:</label>
+            <input type="date" placeholder="fecha de pago" id="fecha_de_pago" name="fecha_de_pago" class="input_form" required>
 
-    <label for="comprobante">SUBIR COMPROBANTE DE PAGO</label>
-    <div class="carga_comprobante">
-        <input type="file" id="imagen_comprobante" name="imagen_comprobante" accept="image/png, image/jpeg, image/jpg" class="input_file" required>
-    </div>
-    
-    <button class="submit_btn button">ENVIAR</button>
-</div>
-
-        <div class="image_section">
-            <img src="{{asset('img/rueda.jpg')}}" alt="Rueda y Gana con Nosotros">
+            <label for="comprobante">SUBIR COMPROBANTE DE PAGO</label>
+            <div class="carga_comprobante">
+                <input type="file" id="imagen_comprobante" name="imagen_comprobante" accept="image/png, image/jpeg, image/jpg" class="input_file" required>
+            </div>
+            
+            <button class="submit_btn button">ENVIAR</button>
         </div>
+
+                <div class="image_section">
+                    <img src="{{asset('img/rueda.jpg')}}" alt="Rueda y Gana con Nosotros">
+                </div>
+            </div>
+            
+        </form>
+
     </div>
-    
-    </form>
 
 </section>
 
