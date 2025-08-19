@@ -370,10 +370,13 @@ openButton.addEventListener('click', ()=>{
     const inputValue = document.getElementById('cedula').value;
     tick.forEach(ticket =>{
         if(ticket.cedula_cliente === inputValue) {
-            const tick = JSON.parse(ticket.numeros_seleccionados);
-            muestra.innerHTML = tick.join(', ');
-            console.log(ticket);
+            ticket.forEach
+            const ticke = JSON.parse(ticket.numeros_seleccionados);
+            tick.push(...ticke);
+            console.log(tick);
+
         }
+        muestra.innerHTML = tick.join(', ');
         
     })
 })
