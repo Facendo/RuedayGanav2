@@ -53,6 +53,20 @@
         </div>
     </div>
 
+    <div class="cont_modal">
+
+        <div class="x_modal">
+            <img src="{{asset('img/x.png')}}" alt="" >
+        </div>
+        <div class="ventana_tickets">
+            <h2></h2>
+            <div class="contenedor_tickets">
+                <h2 class="data_tickets_modal"></h2>
+                <p class="mostrar_data"></p>
+            </div>
+        </div>
+    </div>
+
 
 
 <br><br><br><br>

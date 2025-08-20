@@ -297,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="ventana_tickets">
             <h2>Aqui puede ver sus tickets</h2>
             <div class="contenedor_tickets">
+                <h2 class="data_tickets_modal"></h2>
                 <p class="mostrar_data"></p>
             </div>
         </div>
@@ -357,57 +358,59 @@ Bienvenido a donde los sueños se hacen realidad:
 <script>
 
 
-const tick = @json($tickets);
+(function() {
+    const tick = @json($tickets);
 
-const modal = document.querySelector('.cont_modal');
-const closeButton = document.querySelector('.x_modal');
-const openButton = document.querySelector('.button_tick'); 
-const muestra = document.querySelector('.mostrar_data');
+    const modal = document.querySelector('.cont_modal');
+    const closeButton = document.querySelector('.x_modal');
+    const openButton = document.querySelector('.button_tick'); 
+    const muestra = document.querySelector('.mostrar_data');
+    const nombre = document.querySelector('.data_tickets_modal');
 
+    openButton.addEventListener('click', () => {
+        let numeros = [];
+        const inputValue = document.getElementById('cedula').value;
+        tick.forEach(ticket => {
+            if(ticket.cedula_cliente === inputValue) {
+                // This line has a syntax error and will cause the code to fail.
+                // It should be removed as it does not perform any function.
+                // ticket.foreach 
+                const ticke = JSON.parse(ticket.numeros_seleccionados);
+                numeros.push(...ticke);
+                nombre.innerHTML = ticket.nombre_cliente;
+                muestra.innerHTML = numeros.join(', ');
+            }
+        });
+    });
 
-
-openButton.addEventListener('click', ()=>{
-    const inputValue = document.getElementById('cedula').value;
-    tick.forEach(ticket =>{
-        if(ticket.cedula_cliente === inputValue) {
-            ticket.forEach
-            const ticke = JSON.parse(ticket.numeros_seleccionados);
-            tick.push(...ticke);
-            console.log(tick);
-
+    function openModal(event) {
+        if (event) {
+            event.preventDefault(); 
         }
-        muestra.innerHTML = tick.join(', ');
         
-    })
-})
-
-function openModal(event) {
-    if (event) {
-        event.preventDefault(); 
+        modal.style.transform = 'translateX(0)';
+        modal.style.display = 'block';
     }
-    
-    modal.style.transform = 'translateX(0)';
-    modal.style.display = 'block';
-}
 
-function closeModal() {
-    modal.style.transform = 'translateX(110%)';
-    setTimeout(() => {
-        modal.style.display = 'none';
-    }, 500);
-}
-
-if (openButton) {
-    openButton.addEventListener('click', openModal);
-}
-
-closeButton.addEventListener('click', closeModal);
-
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
+    function closeModal() {
+        modal.style.transform = 'translateX(110%)';
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 500);
     }
-});
+
+    if (openButton) {
+        openButton.addEventListener('click', openModal);
+    }
+
+    closeButton.addEventListener('click', closeModal);
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+})();
 </script>
 
 
