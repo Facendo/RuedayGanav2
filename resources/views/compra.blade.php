@@ -54,7 +54,7 @@
     
     <div class="cont_form">
 
-        <form action="{{route("cliente.store")}}" method="POST" class="cont_form" enctype="multipart/form-data">
+        <form action="{{route("cliente.store")}}" method="POST" class="cont_form" enctype="multipart/form-data" id="reg_compra">
             <input type="hidden" id="cantidad_de_tickets" name="cantidad_de_tickets" required>
             <input type="hidden" id="monto" name="monto" required>
             <div class="header">
@@ -137,8 +137,64 @@
 <script src="{{asset('js/manejo_tickets.js')}}"></script>
 
 
-
 <script>
+
+document.getElementById('cedula').addEventListener('input', () => {
+    const cedula = document.getElementById('cedula').value;
+    const usuariosGuardados = localStorage.getItem('listaUsuarios');
+    const listaUsuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
+
+    const usuarioEncontrado = listaUsuarios.find(u => u.cedula === cedula);
+
+    // Precargar los datos si el usuario existe
+    if (usuarioEncontrado) {
+        document.getElementById('nombre_y_apellido').value = usuarioEncontrado.nombre;
+        document.getElementById('telefono').value = usuarioEncontrado.telefono;
+        document.getElementById('correo').value = usuarioEncontrado.correo;
+    } else {
+        // Dejar los campos vacíos si la cédula no se encuentra
+        document.getElementById('nombre_y_apellido').value = '';
+        document.getElementById('telefono').value = '';
+        document.getElementById('correo').value = '';
+    }
+});
+
+const formulario_compra = document.getElementById('reg_compra');
+
+formulario_compra.addEventListener('submit', () => {
+    const cedula = document.getElementById('cedula').value;
+    const nombre = document.getElementById('nombre_y_apellido').value;
+    const telefono = document.getElementById('telefono').value;
+    const correo = document.getElementById('correo').value;
+
+    const usuariosGuardados = localStorage.getItem('listaUsuarios');
+    let listaUsuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
+
+    const usuarioExistente = listaUsuarios.find(u => u.cedula === cedula);
+
+    // Si el usuario no existe, guardamos sus datos en Local Storage.
+    // Si existe, no hacemos nada y el formulario se envía igual.
+    if (!usuarioExistente) {
+        const nuevoUsuario = {
+            cedula: cedula,
+            nombre: nombre,
+            telefono: telefono,
+            correo: correo
+        };
+
+        listaUsuarios.push(nuevoUsuario);
+        localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios));
+    }
+    
+    // El formulario se envía automáticamente después de esta función
+    // porque no usamos e.preventDefault().
+});
+
+</script>
+
+
+
+<!-- <script>
     //Funcion para precargar los datos del cliente
     const clientes= @json($clientes);
 
@@ -153,7 +209,7 @@
            document.getElementById('correo').value = cliente.correo;
        }
    });
-</script>
+</script> -->
 
 
 <script>
