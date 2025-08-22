@@ -40,11 +40,11 @@
                         <td>{{ $ticket->cedula_cliente}}</td>
                         <td>{{ $ticket->nombre_cliente}}</td>
                         <td>{{ $ticket->telefono_cliente}}</td>
-                        @php
+                        <!-- @php
                             $numeros_comprados = json_decode($ticket->numeros_seleccionados, true);
                             $numeros_comprados = implode("-", $numeros_comprados);
-                        @endphp
-                        <td>{{ $numeros_comprados}}</td>
+                        @endphp -->
+                        <td><div class="btn submit_btn">Mostrar</div></td>
                         <td>{{ $ticket->nombre_sorteo}}</td>
                     </tr>
                     @endforeach
@@ -59,7 +59,7 @@
             <img src="{{asset('img/x.png')}}" alt="" >
         </div>
         <div class="ventana_tickets">
-            <h2></h2>
+            <h2>Aqui puede ver sus tickets</h2>
             <div class="contenedor_tickets">
                 <h2 class="data_tickets_modal"></h2>
                 <p class="mostrar_data"></p>
@@ -67,6 +67,65 @@
         </div>
     </div>
 
+    <script>
+
+        (function() {
+            const ticketsData = @json($tickets);
+
+            const modal = document.querySelector('.cont_modal');
+            const closeButton = document.querySelector('.x_modal');
+            const openButtons = document.querySelectorAll('.btn'); 
+            
+            const muestra = document.querySelector('.mostrar_data');
+            const nombre = document.querySelector('.data_tickets_modal');
+
+            function openModal(event) {
+                if (event) {
+                    event.preventDefault(); 
+                }
+                
+                modal.style.display = 'block';
+                setTimeout(() => {
+                    modal.style.transform = 'translateX(0)';
+                }, 10);
+            }
+
+            function closeModal() {
+                modal.style.transform = 'translateX(110%)';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 500);
+            }
+
+            openButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const row = event.target.closest('tr');
+
+                    const ticketId = row.querySelector('td:nth-child(1)').textContent;
+
+                    const ticket = ticketsData.find(t => t.id_ticket == ticketId);
+
+                    if (ticket) {
+                        nombre.textContent = `Ticket de ${ticket.nombre_cliente}`;
+                        const numeros = JSON.parse(ticket.numeros_seleccionados).join('-');
+                        muestra.textContent = `${numeros}`;
+                    }
+
+                    openModal(event);
+                });
+            });
+
+            closeButton.addEventListener('click', closeModal);
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+    })();
+
+    </script>
 
 
 <br><br><br><br>
