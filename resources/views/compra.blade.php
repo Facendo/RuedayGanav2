@@ -64,10 +64,10 @@
             <input type="hidden" id="id_sorteo" name="id_sorteo" value="{{$sorteo->id_sorteo}}" required>
             <div class="contador_tickets">
                 <div class="container_tick">
+                    <div class="selector_ticket">2 tickets</div>
                     <div class="selector_ticket">5 tickets</div>
                     <div class="selector_ticket">10 tickets</div>
                     <div class="selector_ticket">20 tickets</div>
-                    <div class="selector_ticket">50 tickets</div>
                 </div>
 
                 <div class="cont_counter">
@@ -95,18 +95,18 @@
 
             <label>METODO DE PAGO</label>
             <div class="icons_pago">
-                <img src="{{asset('img/banesco_logo.png')}}" alt="Pago Móvil Banesco" data-metodo="Pago movil Banesco">
-                <img src="{{asset('img/banplus_logo.png')}}" alt="Pago Móvil Banplus" data-metodo="Pago movil Banplus">
-                <img src="{{asset('img/zelle_logo.webp')}}" alt="Zelle" data-metodo="Zelle">
-                <img src="{{asset('img/binance_logo.png')}}" alt="Binance" data-metodo="Binance">
-                <img src="{{asset('img/zinli_logo.png')}}" alt="Zinli" data-metodo="Zinli">
+                <img src="{{asset('img/banesco_logo.png')}}" alt="Pago Móvil Banesco" data-metodo="Pago movil Banesco" class="circle_pago">
+                <img src="{{asset('img/banplus_logo.png')}}" alt="Pago Móvil Banplus" data-metodo="Pago movil Banplus" class="circle_pago">
+                <img src="{{asset('img/zelle_logo.webp')}}" alt="Zelle" data-metodo="Zelle" class="circle_pago">
+                <img src="{{asset('img/binance_logo.png')}}" alt="Binance" data-metodo="Binance" class="circle_pago">
+                <img src="{{asset('img/zinli_logo.jpg')}}" alt="Zinli" data-metodo="Zinli" class="circle_pago">
             </div>
             
             <div class="data_p">
                 <p>Por favor, selecciona un método de pago para ver los detalles.</p>
             </div>
 
-    <input type="hidden" id="metodo_pago_seleccionado" name="metodo_pago_seleccionado" required>
+            <input type="hidden" id="metodo_pago_seleccionado" name="metodo_pago_seleccionado" required>
 
             <label for="referencia">Referencia de pago:</label>
             <input type="text" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
@@ -122,7 +122,7 @@
         </div>
 
                 <div class="image_section">
-                    <img src="{{asset('img/rueda.jpg')}}" alt="Rueda y Gana con Nosotros">
+                    <img src="{{asset('img/rueda.png')}}" alt="Rueda y Gana con Nosotros">
                 </div>
             </div>
             
