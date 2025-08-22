@@ -29,12 +29,12 @@
     <img src="{{asset('img/menu.png')}}" alt="menu_logo">
 </div>
 
-<div class="panel_nav">
-    <a href="#" class="option_panel_nav">Inicio</a>
-    <a href="#" class="option_panel_nav">Participar</a>
-    <a href="#" class="option_panel_nav">Nuestro top</a>
-    <a href="#" class="option_panel_nav">Contactanos</a>
-</div>
+    <div class="panel_nav">
+                    <a href="#header" class="option_panel_nav">Inicio</a>
+                    <a href="#premios" class="option_panel_nav">Participar</a>
+                    <a href="#top_ventas" class="option_panel_nav">Top de ventas</a>
+                    <a href="#foot" class="option_panel_nav">Contactanos</a>
+    </div>
 
 
     <header id="header">
@@ -44,12 +44,14 @@
                     <img class="imagen_nav" src="{{asset('img/favicon-32x32.png')}}" alt="imagen">
                 </div>
                 <div class="separador_nav menu_pc_exist">
-                    <a href="" class="button_nav">Inicio</a>
-                    <a href="" class="button_nav">Participar</a>
-                    <a href="" class="button_nav">Nuestro top</a>
-                    <a href="" class="button_nav button_contact">Contactanos</a>
+                    <a href="#header" class="button_nav">Inicio</a>
+                    <a href="#premios" class="button_nav">Participar</a>
+                    <a href="#top_ventas" class="button_nav">Top de ventas</a>
+                    <a href="#foot" class="button_nav button_contact">Contactanos</a>
                 </div>
         </nav>
+
+        <br><br><br><br>
         
     
         <div class="container">
@@ -59,6 +61,7 @@
 
                 <div class="container_presentacion">
                     <h1 class="text_presentacion">¡RUEDA Y GANA CON NOSOTROS!</h1>
+                    <br><br><br>
 
                     <div class="container_content">
 
@@ -72,7 +75,7 @@
                             <br>
                             <p class="text_center">Bienvenido a donde los sueños se hacen realidad: ¡Rueda y Gana con Nosotros!”</p>
                             <br><br><br><br><br>   
-                            <a href="#premios" class="button button_ini submit_btn">Participar</a>
+                            <!-- <a href="#premios" class="button button_ini submit_btn">Participar</a> -->
                         </div>
 
                     </div>
@@ -108,10 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
     </script>
 
+    <br><br><br><br>
+
 
 <!------------------------- SECCION DE PREMIOS ------------------------->
         
-        
+    
     <section id="premios" class="container">  
 
     <h2 class="section_subtitle">SORTEOS DISPONIBLES</h2>
@@ -221,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 <div class="card_datos">
                     <div class="container_datos">
-                        <img src="{{asset('img/banplus_logo.png')}}" alt="imagenlogo" class="logo_bp">
+                        <img src="{{asset('img/banplus_logo_1.png')}}" alt="imagenlogo" class="logo_bp">
                         <div class="datos_pago">
                             <h3>Pago Movil Banplus</h3>
                             <p class="data">0174</p>
@@ -234,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="card_datos">
                     <div class="container_datos">
 
-                        <img src="{{asset('img/zelle_logo.webp')}}" alt="imagenlogo" class="logo_zin">
+                        <img src="{{asset('img/zinli_logo.jpg')}}" alt="imagenlogo" class="logo_zin">
 
                         <div class="datos_pago">
                             <h3>Zinli</h3>
