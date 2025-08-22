@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { label: 'ID', data: '163593375' }
         ],
         'Zelle': [
-            { label: 'Nombre', data: 'Aquiles Guacaran' },
-            { label: 'Correo', data: 'Aquilesg6@gmail.com' }
+            { label: 'Nombre', data: 'Jaider Brito' },
+            { label: 'Numero', data: '+1 931 421 2293' }
         ]
     };
 
