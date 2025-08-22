@@ -118,8 +118,12 @@
                 <input type="file" id="imagen_comprobante" name="imagen_comprobante" accept="image/png, image/jpeg, image/jpg" class="input_file" required>
             </div>
             
-            <button class="submit_btn button">ENVIAR</button>
-        </div>
+                <button class="submit_btn button">ENVIAR</button>
+
+                <div id="message"></div>
+            </div>
+
+            
 
                 <div class="image_section">
                     <img src="{{asset('img/rueda.png')}}" alt="Rueda y Gana con Nosotros">
