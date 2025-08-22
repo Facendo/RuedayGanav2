@@ -44,7 +44,7 @@
             overflow: hidden;
         }
 
-        .header h1{
+        .header h1 h2{
             background-color: var(--orange);
             color: white;
             text-align: center;
@@ -52,7 +52,7 @@
             border-radius: 10px;
         }
 
-        .header h1 {
+        .header h1 h2{
             font-size: 1.5rem;
             font-weight: 700;
         }
@@ -241,6 +241,12 @@
         }
         .form{
             padding: 20px;
+        }
+
+        .container_edit{
+            display: flex;
+            justify-content: center;
+            
         }
 
         @media (max-width: 480px) {

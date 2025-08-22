@@ -159,37 +159,6 @@ document.getElementById('cedula').addEventListener('input', () => {
     }
 });
 
-const formulario_compra = document.getElementById('reg_compra');
-
-formulario_compra.addEventListener('submit', () => {
-    const cedula = document.getElementById('cedula').value;
-    const nombre = document.getElementById('nombre_y_apellido').value;
-    const telefono = document.getElementById('telefono').value;
-    const correo = document.getElementById('correo').value;
-
-    const usuariosGuardados = localStorage.getItem('listaUsuarios');
-    let listaUsuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
-
-    const usuarioExistente = listaUsuarios.find(u => u.cedula === cedula);
-
-    // Si el usuario no existe, guardamos sus datos en Local Storage.
-    // Si existe, no hacemos nada y el formulario se envía igual.
-    if (!usuarioExistente) {
-        const nuevoUsuario = {
-            cedula: cedula,
-            nombre: nombre,
-            telefono: telefono,
-            correo: correo
-        };
-
-        listaUsuarios.push(nuevoUsuario);
-        localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios));
-    }
-    
-    // El formulario se envía automáticamente después de esta función
-    // porque no usamos e.preventDefault().
-});
-
 </script>
 
 

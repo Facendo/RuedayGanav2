@@ -49,78 +49,31 @@
         <div class="x_modal">
             <img src="{{asset('img/x.png')}}" alt="" >
         </div>
-        <div class="container_edit">
-            <h2>Editar Sorteo</h2>
+        <div class="container_reg">
             <div class="cont_form">
-                <form action="" class="form_reg_sorteo form" method="POST" enctype="multipart/form-data">
-                    <h3 class="sub_inp">Editar sorteo</h3>
-                    @csrf
-                    <label for="sorteo_nombre">Nombre:</label>
-                    <input type="text" name="sorteo_nombre" id="sorteo_nombre" placeholder="Nombre del sorteo" class="input_form" require>
-                    <label for="sorteo_fecha_inicio">Fecha de inicio:</label>
-                    <input type="date" name="sorteo_fecha_inicio" id="sorteo_fecha_inicio" placeholder="Fecha de inicio del sorteo" class="input_form" require>
-                    <label for="sorteo_fecha_fin">Fecha de fin:</label>
-                    <input type="date" name="sorteo_fecha_fin" id="sorteo_fecha_fin" placeholder="Fecha de fin del sorteo" class="input_form" require>
-                    <label for="sorteo_descripcion">Descripcion:</label>
-                    <input type="text" name="sorteo_descripcion" id="sorteo_descripcion" placeholder="Descripcion del sorteo" class="input_form" require>
+                <form action="{{route("cliente.store")}}" method="POST" class="cont_form" enctype="multipart/form-data" id="reg_compra">
+                        
+                    <h2 class="header">EDITAR PAGO</h2>
 
-                    <label for="precio_boleto_bs">Precio boleto (bs):</label>
-                    <input type="text" name="precio_boleto_bs" id="precio_boleto_bs" placeholder="Precio del boleto en bolivares" class="input_form" require>
-                    <label for="precio_boleto_dolar">Precio boleto (dolar):</label>
-                    <input type="text" name="precio_boleto_dolar" id="precio_boleto_dolar" placeholder="Precio del boleto en dolares" class="input_form" require>
-                    <label for="sorteo_imagen" class="file">Imagen:</label>
-                    <input type="file" name="sorteo_imagen" id="sorteo_imagen" placeholder="Imagen del sorteo" class="input_file" accept="image/*" require>
-                    
-                    <br>
+                    <div class="cont_input">
+                        <div class="content_form">
 
-                    <button type="submit" class="btn_reg_sorteo button">Registrar sorteo</button>
+                            <label for="monto_edit">MONTO:</label>
+                            <input type="number" placeholder="Edicion de monto" id="monto_edit" name="monto_edit" class="input_form" required>
+                            <label for="cantidad_compra">CANTIDAD_COMPRA:</label>
+                            <input type="number" placeholder="Cantidad comprada" id="cantidad_edit" name="cantidad_edit" class="input_form" required>
+
+                            <button type="submit" class="button submit_btn">Editar sorteo</button>
+
+                        </div>
+                    </div>
+            
                 </form>
             </div>
         </div>
     </div>
 
 
-    <script>
-
-
-const modal = document.querySelector('.cont_modal');
-const closeButton = document.querySelector('.x_modal');
-const openButton = document.querySelector('.button_edit'); 
-
-openButton.addEventListener('click', (e)=>{
-    e.preventDefault();
-})
-
-function openModal(event) {
-    if (event) {
-        event.preventDefault(); 
-    }
-    
-    modal.style.transform = 'translateX(0)';
-    modal.style.display = 'block';
-    
-}
-
-function closeModal() {
-    modal.style.transform = 'translateX(110%)';
-    setTimeout(() => {
-        modal.style.display = 'none';
-    }, 500);
-}
-
-if (openButton) {
-    openButton.addEventListener('click', openModal);
-}
-
-closeButton.addEventListener('click', closeModal);
-
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-
-    </script>
     
 
     <div id="section_ventas_admin" class="container section_ventas">
@@ -165,11 +118,12 @@ window.addEventListener('click', (event) => {
                         <td>{{ $pago->metodo_de_pago}}</td>
                         <td>{{ $pago->estado_pago }}</td>
                         <td>
-                            <form action="" method="POST">	
+                            <!-- <form action="" method="POST">	
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button button_edit">Editar</button>
-                            </form>
+                            </form> -->
+                            <div class="button btn_modal">Editar</div>
                         </td>
                         <td>
                         @if ($pago->estado_pago == 'Confirmado')
@@ -189,6 +143,52 @@ window.addEventListener('click', (event) => {
     
 
     
+    <script>
+
+        const botones = document.querySelectorAll('.btn_modal');
+        const modal = document.querySelector('.cont_modal');
+        const closeButton = document.querySelector('.x_modal');
+
+         function openModal(event) {
+                if (event) {
+                    event.preventDefault(); 
+                }
+                
+                modal.style.display = 'block';
+                setTimeout(() => {
+                    modal.style.transform = 'translateX(0)';
+                }, 10);
+            }
+
+            function closeModal() {
+                modal.style.transform = 'translateX(110%)';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 500);
+            }
+
+        botones.forEach(btn => {
+            btn.addEventListener('click', (e)=>{
+
+                openModal(e);
+                
+            })
+
+        closeButton.addEventListener('click', closeModal);
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        
+        
+        })
+
+        
+
+
+    </script>
 
      <div class="pagination">
            {{ $pagos->links() }} 
@@ -295,7 +295,7 @@ window.addEventListener('click', (event) => {
 
 
 <h2 class="section_subtitle">Asignar Premios</h2>
-<div class="container_reg">
+    <div class="container_reg">
     
             <div class="cont_form">
                 <form action="{{route('premio.store')}}" class="form_reg_sorteo form content_form" method="POST" enctype="multipart/form-data">
@@ -331,20 +331,7 @@ window.addEventListener('click', (event) => {
 
     <script>
         
-        const buttons = document.querySelectorAll('.button_ref');
-        const modal = document.querySelector('.container_modal');
-        const closeModal = document.querySelector('.container_modal');
-
-       
-        buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            modal.style.left = "0%";
-        });
-    });
-
-        closeModal.addEventListener('click', function() {
-            closeModal.style.left= '-100%';
-        });
+        
     </script>
         
 </body>
