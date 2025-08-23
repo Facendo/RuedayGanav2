@@ -69,16 +69,16 @@ class SorteoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sorteo $sorteo)
+    public function update(Request $request)
     {
         //Funcion para actualizar un sorteo
+        $sorteo = Sorteo::find($request->id_sorteo);
+        $sorteo->sorteo_descripcion = $request->sorteo_descripcion;
         $sorteo->sorteo_nombre = $request->sorteo_nombre;
         $sorteo->precio_boleto_bs = $request->precio_boleto_bs;
         $sorteo->precio_boleto_dolar = $request->precio_boleto_dolar;
-        $sorteo->sorteo_fecha_inicio = $request->sorteo_fecha_inicio;
-        $sorteo->sorteo_fecha_fin= $request->sorteo_fecha_fin;
         
-        $sorteo->updated_at = $request->now();
+        $sorteo->updated_at = now();
         $sorteo->save();
         return redirect()->route('pago.index');
     }

@@ -12,3 +12,4 @@ Route::delete('/admin/{id_pago}', [PagoController::class, 'destroy'])->name('pag
 Route::get('/tickets/show', [TicketController::class, 'show'])->name('admin.showticket')->middleware('auth');
 Route::get('/ticket/show',[TicketController::class, 'showticket'])->name('admin.ticket')->middleware('auth');
 Route::post('/showcomprobante', [PagoController::class, 'showComprobante'])->name('admin.showcomprobante')->middleware('auth');
+Route::put('/admin/pago/update',[PagoController::class, 'update'])->name('pago.update')->middleware('auth');
