@@ -51,8 +51,8 @@
                         <th>Nombre del Cliente</th>
                         <th>Telefono Cliente</th>
                         <th>Numeros Comprados</th>
-                        <th>Nombre de Sorteo</th>
-                        
+                        <th>Fecha y hora de creacion</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -68,7 +68,7 @@
                             $numeros_comprados = implode("-", $numeros_comprados);
                         @endphp -->
                         <td><div class="btn submit_btn">Mostrar</div></td>
-                        <td>{{ $ticket->nombre_sorteo}}</td>
+                        <td>{{ $ticket->created_at }}</td>
                     </tr>
                     @endforeach
                 </tbody>

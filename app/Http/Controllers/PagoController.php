@@ -20,6 +20,13 @@ class PagoController extends Controller
         return view('admin.admin',compact('pagos','premios','sorteos'));
     }
 
+    public function update(){
+        $pago=Pago::find(request('id_pago'));
+        $pago->monto = request('monto_edit');
+        $pago->cantidad_de_tickets = request('cantidad_edit');
+        $pago->save();
+        return redirect()->route('pago.index')->with('success', 'Pago actualizado correctamente.');
+    }
     
    public function destroy(int $id_pago)
 {

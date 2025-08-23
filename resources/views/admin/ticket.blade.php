@@ -29,6 +29,7 @@
                         <th>Telefono Cliente</th>
                         <th>Numeros Comprados</th>
                         <th>Nombre de Sorteo</th>
+                        <th>Fecha y hora de creacion</th>
                         
                     </tr>
                 </thead>
@@ -40,12 +41,13 @@
                         <td>{{ $ticket->cedula_cliente}}</td>
                         <td>{{ $ticket->nombre_cliente}}</td>
                         <td>{{ $ticket->telefono_cliente}}</td>
-                        <!-- @php
+                        @php
                             $numeros_comprados = json_decode($ticket->numeros_seleccionados, true);
                             $numeros_comprados = implode("-", $numeros_comprados);
-                        @endphp -->
+                        @endphp
                         <td><div class="btn submit_btn">Mostrar</div></td>
                         <td>{{ $ticket->nombre_sorteo}}</td>
+                        <td>{{ $ticket->created_at }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -53,7 +55,7 @@
         </div>
     </div>
 
-    <div class="cont_modal">
+   <div class="cont_modal">
 
         <div class="x_modal">
             <img src="{{asset('img/x.png')}}" alt="" >
