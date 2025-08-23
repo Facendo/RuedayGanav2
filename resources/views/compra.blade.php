@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- <script>
     //Funcion para precargar los datos del cliente
-    const clientes= @json($clientes);
+    const clientes= json($clientes);
 
     inputCedula= document.getElementById('cedula');
 
