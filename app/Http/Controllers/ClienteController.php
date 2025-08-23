@@ -44,6 +44,9 @@ class ClienteController extends Controller
         if(Pago::where('referencia', $request->referencia)->exists()){
             return redirect()->route('sorteo.index')->with('error', 'La referencia ya existe.');
         }
+        else if(strlen($request->referencia)<10){
+            return redirect()->route('sorteo.index')->with('error', 'Ingrese la referencia de pago Completa.');
+        }
         else{
             $pago->cedula_cliente = $request->cedula;
             $pago->referencia = $request->referencia;
