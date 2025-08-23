@@ -166,15 +166,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isValid) {
             event.preventDefault();
             if (messageElement) {
-                messageElement.classList.remove('message_success');
-                messageElement.classList.add('message_error');
+                messageElement.classList.remove('mesage_success');
+                messageElement.classList.add('mesage_error');
                 messageElement.textContent = 'Algunos datos son incorrectos, por favor revisa los campos resaltados.';
                 messageElement.style.display = 'block';
             }
         } else {
             if (messageElement) {
-                messageElement.classList.remove('message_error');
-                messageElement.classList.add('message_success');
+                messageElement.classList.remove('mesage_error');
+                messageElement.classList.add('mesage_success');
                 messageElement.textContent = 'Formulario enviado correctamente.';
                 messageElement.style.display = 'block';
             }
