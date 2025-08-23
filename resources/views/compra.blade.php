@@ -25,20 +25,14 @@
     };
 </script>
 
-@if (session('success'))
-    <div class="message_success" role="alert">
-        <span class="block sm:inline">{{ session('success') }}</span>
-    </div>
-@endif
+<div id="session-messages" style="display:none;"
+    data-success="{{ session('success') }}"
+    data-error="{{ session('error') }}"
+></div>
 
-@if ($errors->any())
-    <div class="message_error" role="alert">
-        <strong >¡Ups!</strong>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-    </div>
- @endif
+<div id="dynamic-message-container" class="message-container">
+    {{-- El mensaje se insertará aquí con JavaScript --}}
+</div>
 
  <div id="sorteo-data" data-precio-dolar="{{ $sorteo->precio_boleto_dolar }}" data-precio-bs="{{ $sorteo->precio_boleto_bs }}"></div>
 
@@ -201,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
 </script>
 
 
@@ -270,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Si hay un mensaje de éxito, crea el HTML para él
     if (successMessage) {
         messageHTML = `
-            <div class="message_success" role="alert">
+            <div class="mesage_success" role="alert">
                 <span class="block sm:inline">${successMessage}</span>
             </div>
         `;
@@ -279,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Si hay un mensaje de error, crea el HTML para él
     if (errorMessage) {
         messageHTML = `
-            <div class="message_error" role="alert">
+            <div class="mesage_error" role="alert">
                 <strong>¡Ups!</strong>
                 <span class="block sm:inline">${errorMessage}</span>
             </div>
@@ -297,8 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
-    
-    
+
     <footer id="foot">
 
     <div class="container">

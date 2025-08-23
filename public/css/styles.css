@@ -530,13 +530,12 @@ tr.td_top:nth-child(1){
     margin: 15px 0;
     width: 100%;
     padding: 30px 20px;
-    color: #155724; 
-    background-color: #d4edda; 
-    border-color: #155724; 
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #155724; /* Propiedad corregida */
     border-radius: 5px;
-    transition: 0.4;
+    transition: 0.4s; /* Propiedad corregida */
 }
-
 
 .mesage_error {
     margin: 15px 0;
@@ -544,11 +543,19 @@ tr.td_top:nth-child(1){
     padding: 30px 20px;
     color: #d31; 
     background-color: #f8d7da;
-    border-color: #c11; 
+    border: 1px solid #c11; /* Propiedad corregida */
     border-radius: 5px;
     transition: 0.4s;
 }
 
+.message-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
 
 .cont_modal {
 

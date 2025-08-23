@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // --- VALIDACIONES DE CADA CAMPO ---
-
+        // (La lógica de las validaciones de los campos individuales es la misma)
+        
         // Validar Cédula
         const cedula = cedulaInput.value.trim();
         if (cedula === '') {
@@ -153,31 +154,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     mensajeCargaImagen.style.display = 'block';
                 }
                 isValid = false;
-            } else {
-                if (mensajeCargaImagen) {
-                    mensajeCargaImagen.textContent = `Archivo seleccionado: ${file.name}`;
-                    mensajeCargaImagen.style.color = 'green';
-                    mensajeCargaImagen.style.display = 'block';
-                }
             }
         }
 
-        // Prevenir el envío si no es válido y mostrar mensaje general
+        // --- LÓGICA FINAL Y CORREGIDA ---
+        // Si el formulario no es válido, detenemos el envío y mostramos el mensaje de error
         if (!isValid) {
-            event.preventDefault();
+            event.preventDefault(); // Detiene el envío del formulario
             if (messageElement) {
                 messageElement.classList.remove('mesage_success');
                 messageElement.classList.add('mesage_error');
-                messageElement.textContent = 'Algunos datos son incorrectos, por favor revisa los campos resaltados.';
+                messageElement.textContent = 'Algunos datos son incorrectos, por favor revisa los campos.';
                 messageElement.style.display = 'block';
             }
-        } else {
-            if (messageElement) {
-                messageElement.classList.remove('mesage_error');
-                messageElement.classList.add('mesage_success');
-                messageElement.textContent = 'Formulario enviado correctamente.';
-                messageElement.style.display = 'block';
-            }
+            return; // Detiene la ejecución del resto del código
         }
+        
+        // Si el formulario es válido, la ejecución continúa y el formulario se envía
+        // No agregues el mensaje de éxito aquí, ya que el servidor se encargará de eso.
     });
 });

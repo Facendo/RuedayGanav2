@@ -154,7 +154,7 @@
         </table>
     </div>
 </div>
-
+{{ $pagos->links() }}
 <br><br><br><br><br><br><br><br><br><br>
 
 <h2 class="section_subtitle">REGISTRAR SORTEO</h2>
