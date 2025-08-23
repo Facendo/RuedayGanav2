@@ -87,13 +87,16 @@
 <nav id="menu" class="menu">
     <h2 class="titulo">Panel administrador</h2>
 </nav>
-<div class="filtro_admin">
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class='button'>Cerrar Sesión</button>
-    </form>
-    <a href="{{route('admin.showticket')}}" class="button">Tickets vendidos</a>
-</div>
+
+    <div class="filtro_admin">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class='button'>Cerrar Sesión</button>
+        </form>
+        <a href="{{route('admin.showticket')}}" class="button">Tickets vendidos</a>
+    </div>
+    
+
 
 <div id="section_ventas_admin" class="container section_ventas">
     <h2 class="section_subtitle">Tabla de pagos de boletos</h2>
@@ -162,7 +165,9 @@
         </table>
     </div>
 </div>
-{{ $pagos->links() }}
+<div class="pagination_container">
+    {{ $pagos->links() }}
+</div>
 <br><br><br><br><br><br><br><br><br><br>
 
 <h2 class="section_subtitle">REGISTRAR SORTEO</h2>
