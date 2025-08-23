@@ -148,13 +148,11 @@ nav.menu{
 }
 
 .button_nav{
-    width: 7em;
-    height: 3em;
     border: 1px solid rgb(254, 180, 3);
     border: none;
     outline: none;
     background-color: #0056b3;
-    padding: 5px 10px;
+    padding: 7px 12px;
     text-decoration: none;
     color: white; 
     border-radius: 25px;
@@ -167,6 +165,15 @@ nav.menu{
 
 .button_nav:hover{
     background-color: #0036b3;
+}
+
+.button_contact{
+    border: 2px solid rgb(254, 180, 3);
+}
+
+.button_contact:hover{
+    background-color: rgb(254, 180, 3);
+    color: black;
 }
 
 h2{

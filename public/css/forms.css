@@ -44,7 +44,7 @@
             overflow: hidden;
         }
 
-        .header h1 h2{
+        .header h1,.header h2 {
             background-color: var(--orange);
             color: white;
             text-align: center;
@@ -52,7 +52,7 @@
             border-radius: 10px;
         }
 
-        .header h1 h2{
+        .header h1, .header h2{
             font-size: 1.5rem;
             font-weight: 700;
         }
@@ -249,6 +249,18 @@
             
         }
 
+        .circle_pago{
+            border-radius: 50%;
+            transition: .1s;
+        }
+
+        .selected{
+            padding: 3px;
+            border: 2px solid #3e8;
+            
+        }
+
+
         @media (max-width: 480px) {
             .ticket-options {
                 grid-template-columns: 1fr;
@@ -258,6 +270,12 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .data_p{
+            color: white;
+        }
+
+        
 
 
         

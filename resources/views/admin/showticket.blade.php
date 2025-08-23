@@ -63,10 +63,10 @@
                         <td>{{ $ticket->cedula_cliente}}</td>
                         <td>{{ $ticket->nombre_cliente}}</td>
                         <td>{{ $ticket->telefono_cliente}}</td>
-                        @php
+                        <!-- @php
                             $numeros_comprados = json_decode($ticket->numeros_seleccionados, true);
                             $numeros_comprados = implode("-", $numeros_comprados);
-                        @endphp
+                        @endphp -->
                         <td><div class="btn submit_btn">Mostrar</div></td>
                         <td>{{ $ticket->created_at }}</td>
                     </tr>
