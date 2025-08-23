@@ -140,6 +140,14 @@
                              data-cantidad="{{$pago->cantidad_de_tickets}}">
                              Editar
                         </div>
+                        <div>
+                            <form action="{{route('pago.destroy', $pago->id_pago)}}" method="POST" class="form-eliminar">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id_pago" value="{{$pago->id_pago}}">
+                                <button class="button" type="submit">Eliminar</button>
+                            </form>
+                        </div>
                     </td>
                     <td>
                         @if ($pago->estado_pago == 'Confirmado')
@@ -154,7 +162,7 @@
         </table>
     </div>
 </div>
-
+{{ $pagos->links() }}
 <br><br><br><br><br><br><br><br><br><br>
 
 <h2 class="section_subtitle">REGISTRAR SORTEO</h2>
@@ -234,7 +242,15 @@
                              data-precio-dolar="{{ $sorteo->precio_boleto_dolar }}">
                              Editar
                         </div>
-                        
+                        <div>
+                            <form action="{{route('sorteo.destroy', $sorteo->id_sorteo)}}" method="POST" class="form-eliminar">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id_sorteo" value="{{$sorteo->id_sorteo}}">
+                                <button class="button" type="submit">Eliminar</button>
+                            </form>
+                        </div>
+
                     </td>
                 </tr>
                 @endforeach
@@ -363,6 +379,25 @@
         }
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // ... (Tu código de modales y otros scripts) ...
+    
+    // Selecciona todos los formularios con la clase 'form-eliminar'
+    const eliminarForms = document.querySelectorAll('.form-eliminar');
+
+    eliminarForms.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            // Muestra un cuadro de diálogo de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas eliminar este registro? Esta acción no se puede deshacer.');
+
+            // Si el usuario presiona 'Cancelar', previene el envío del formulario
+            if (!confirmacion) {
+                e.preventDefault();
+            }
+        });
+    });
+});
 </script>
 </body>
 </html>
