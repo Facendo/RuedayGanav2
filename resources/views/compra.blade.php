@@ -109,6 +109,9 @@
             <input type="hidden" id="metodo_pago_seleccionado" name="metodo_pago_seleccionado" required>
 
             <label for="referencia">Referencia de pago:</label>
+            <div class="data_p">
+            <p>Advertencia! ingrese la referencia de pago completa. De lo contrario su pago no sera procesado.</p>
+            </div>
             <input type="text" placeholder="referencia de pago" id="referencia" name="referencia" class="input_form" required>
             <label for="fecha_de_pago">Fecha de pago:</label>
             <input type="date" placeholder="fecha de pago" id="fecha_de_pago" name="fecha_de_pago" class="input_form" required>
@@ -251,6 +254,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     });
+    document.addEventListener('DOMContentLoaded', () => {
+    const sessionMessages = document.getElementById('session-messages');
+    const messageContainer = document.getElementById('dynamic-message-container');
+
+    if (!sessionMessages || !messageContainer) {
+        return; // Detiene el script si no encuentra los elementos necesarios
+    }
+
+    const successMessage = sessionMessages.dataset.success;
+    const errorMessage = sessionMessages.dataset.error;
+
+    let messageHTML = '';
+
+    // Si hay un mensaje de éxito, crea el HTML para él
+    if (successMessage) {
+        messageHTML = `
+            <div class="message_success" role="alert">
+                <span class="block sm:inline">${successMessage}</span>
+            </div>
+        `;
+    }
+
+    // Si hay un mensaje de error, crea el HTML para él
+    if (errorMessage) {
+        messageHTML = `
+            <div class="message_error" role="alert">
+                <strong>¡Ups!</strong>
+                <span class="block sm:inline">${errorMessage}</span>
+            </div>
+        `;
+    }
+
+    // Si se encontró algún mensaje, insértalo en el contenedor
+    if (messageHTML) {
+        messageContainer.innerHTML = messageHTML;
+        
+        // Opcional: Ocultar el mensaje después de 5 segundos
+        setTimeout(() => {
+            messageContainer.innerHTML = '';
+        }, 5000); // 5000 milisegundos = 5 segundos
+    }
+});
 </script>
     
     
