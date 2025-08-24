@@ -88,14 +88,15 @@
     <h2 class="titulo">Panel administrador</h2>
 </nav>
 
-    <div class="filtro_admin">
+
+<div class="contenedor_desp">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class='button'>Cerrar Sesión</button>
         </form>
+        <br>
         <a href="{{route('admin.showticket')}}" class="button">Tickets vendidos</a>
     </div>
-    
 
 
 <div id="section_ventas_admin" class="container section_ventas">

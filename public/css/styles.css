@@ -585,6 +585,12 @@ tr.td_top:nth-child(1){
  
 }
 
+/* .filtro_admin{
+    position: absolute;
+    top: 10%;
+    right: 20px;
+} */
+
 .contenedor_tickets{
     width: 90%;
     background-color: rgba(170, 170, 170);
@@ -629,3 +635,8 @@ p.mostrar_data{
     border-radius: 10px;
 }
 
+.contenedor_desp{
+    width: 30%;
+    margin: 0 auto;
+    
+}
