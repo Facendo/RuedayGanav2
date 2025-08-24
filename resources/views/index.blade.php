@@ -41,7 +41,7 @@
         
         <nav id="menu" class="menu">
                 <div class="separador_nav">
-                    <img class="imagen_nav" src="{{asset('img/favicon-32x32.png')}}" alt="imagen">
+                    <img class="imagen_nav" src="{{asset('img/rueda.png')}}" alt="imagen">
                 </div>
                 <div class="separador_nav menu_pc_exist">
                     <a href="#header" class="button_nav">Inicio</a>
@@ -55,7 +55,7 @@
         
     
         <div class="container">
-            @foreach($sorteos as $sorteo)
+
             <div class="container_info container" >
              
 
@@ -66,7 +66,7 @@
                     <div class="container_content">
 
                         <div class="content_img_presentacion press">
-                            <img class="imagen_head" src="{{asset('storage/'.$sorteo->sorteo_imagen)}}" alt="imagen">
+                            <img class="imagen_head" src="{{asset('img/logo_rueda.jpg')}}" alt="imagen">
                         </div>
 
                         <div class="content_text_presentacion">
@@ -79,8 +79,6 @@
                         </div>
 
                     </div>
-
-            @endforeach
 
                 </div>
             </div>
