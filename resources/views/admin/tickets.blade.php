@@ -12,7 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('img/favicon-32x32.png')}}">
+
     <title>Manejo de Tickets</title>
+
 </head>
 <body>
 
@@ -158,6 +160,8 @@
         .form{
             padding: 20px;
         }
+
+        
     </style>
 
  <nav id="menu" class="menu">
@@ -167,21 +171,7 @@
     <section class="container">
            
         <div class="section_tickets">
-            <div>
-                <form action="{{route('ticket.store')}}" method="POST" class="form" id="form">
-                    @csrf
-                    @method('POST')
-                    <input type="hidden" name="id_sorteo" value="{{$sorteo->id_sorteo}}">
-                    <input type="hidden" name="cedula_cliente" value="{{$cliente->cedula}}">
-                    <input type="hidden" name="nombre_cliente" value="{{$cliente->nombre_y_apellido}}">
-                    <input type="hidden" name="telefono_cliente" value="{{$cliente->telefono}}">
-                    <input type="hidden" name="correo_cliente" value="{{$cliente->correo}}">
-                    <input type="hidden" name="id_pago" value="{{$pago->id_pago}}">
-                    <input type="hidden" name="numeros_seleccionados" id="numeros_seleccionados">
-                    <button type="button" onclick="enviarTickets()" id="boton_enviar_tickets" class="button">Generar Tickets Seleccionados</button>
-                     
-                </form>
-            </div>
+            
             
 
             <div class="container_tickets">
@@ -208,6 +198,22 @@
             <div class="cont_tickets_selector">
 
                 <h2 class="section_subtile">GESTIONA TICKETS</h2>
+
+                <div>
+                <form action="{{route('ticket.store')}}" method="POST" class="form" id="form">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="id_sorteo" value="{{$sorteo->id_sorteo}}">
+                    <input type="hidden" name="cedula_cliente" value="{{$cliente->cedula}}">
+                    <input type="hidden" name="nombre_cliente" value="{{$cliente->nombre_y_apellido}}">
+                    <input type="hidden" name="telefono_cliente" value="{{$cliente->telefono}}">
+                    <input type="hidden" name="correo_cliente" value="{{$cliente->correo}}">
+                    <input type="hidden" name="id_pago" value="{{$pago->id_pago}}">
+                    <input type="hidden" name="numeros_seleccionados" id="numeros_seleccionados">
+                    <button type="button" onclick="enviarTickets()" id="boton_enviar_tickets" class="button">Generar Tickets Seleccionados</button>
+                     
+                </form>
+            </div>
 
                 <h3 class="sub_inp">Bloquear Numero</h3>
                 <div class="cont_form">

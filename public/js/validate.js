@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Definición de todos los elementos del DOM
     const form = document.querySelector('.cont_form');
+    const formCompra = document.getElementById('reg_compra');
     const cedulaInput = document.getElementById('cedula');
+    const nombreInput = document.getElementById('nombre_y_apellido'); // Corregido
     const nombreApellidoInput = document.getElementById('nombre_y_apellido');
     const telefonoInput = document.getElementById('telefono');
     const correoInput = document.getElementById('correo');
@@ -12,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const imagenComprobanteInput = document.getElementById('imagen_comprobante');
     const mensajeCargaImagen = document.getElementById('mensajeCargaImagen');
     const messageElement = document.getElementById('message');
+    const miFormulario = document.querySelector('.form'); // Corregido
 
     // Función para mostrar errores debajo del campo
     function showError(element, message) {
@@ -26,7 +30,63 @@ document.addEventListener('DOMContentLoaded', function() {
         errorElement.textContent = message;
     }
 
-    // Listener para el evento submit del formulario
+    // Lógica para guardar usuario en LocalStorage
+    const saveUserToLocalStorage = () => {
+        const newUser = {
+            cedula: cedulaInput.value,
+            nombre: nombreInput.value,
+            telefono: telefonoInput.value,
+            correo: correoInput.value
+        };
+
+        const usuariosGuardados = localStorage.getItem('listaUsuarios');
+        let listaUsuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
+
+        const usuarioIndex = listaUsuarios.findIndex(u => u.cedula === newUser.cedula);
+
+        if (usuarioIndex > -1) {
+            listaUsuarios[usuarioIndex] = newUser;
+        } else {
+            listaUsuarios.push(newUser);
+        }
+
+        localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios));
+    };
+
+    // Lógica para rellenar campos al escribir la cédula
+    cedulaInput.addEventListener('input', () => {
+        const cedula = cedulaInput.value;
+        const usuariosGuardados = localStorage.getItem('listaUsuarios');
+        const listaUsuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
+        const usuarioEncontrado = listaUsuarios.find(u => u.cedula === cedula);
+
+        if (usuarioEncontrado) {
+            nombreInput.value = usuarioEncontrado.nombre;
+            telefonoInput.value = usuarioEncontrado.telefono;
+            correoInput.value = usuarioEncontrado.correo;
+        } else {
+            nombreInput.value = '';
+            telefonoInput.value = '';
+            correoInput.value = '';
+        }
+    });
+
+    // Lógica para mostrar el nombre del archivo de imagen
+    if (imagenComprobanteInput && mensajeCargaImagen) {
+        imagenComprobanteInput.addEventListener('change', () => {
+            if (imagenComprobanteInput.files.length > 0) {
+                const fileName = imagenComprobanteInput.files[0].name;
+                mensajeCargaImagen.textContent = `Archivo seleccionado: ${fileName}. Listo para subir.`;
+                mensajeCargaImagen.style.display = 'block';
+                mensajeCargaImagen.style.color = '#3498db';
+            } else {
+                mensajeCargaImagen.textContent = '';
+                mensajeCargaImagen.style.display = 'none';
+            }
+        });
+    }
+
+    // Listener de SUBMIT unificado para la validación y el envío
     form.addEventListener('submit', function(event) {
         let isValid = true;
         
@@ -40,9 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // --- VALIDACIONES DE CADA CAMPO ---
-        // (La lógica de las validaciones de los campos individuales es la misma)
-        
-        // Validar Cédula
         const cedula = cedulaInput.value.trim();
         if (cedula === '') {
             showError(cedulaInput, 'La cédula es obligatoria.');
@@ -52,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        // Validar Nombre y Apellido
         const nombreApellido = nombreApellidoInput.value.trim();
         if (nombreApellido === '') {
             showError(nombreApellidoInput, 'El nombre y apellido son obligatorios.');
@@ -62,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        // Validar Teléfono
         const telefono = telefonoInput.value.trim();
         if (telefono === '') {
             showError(telefonoInput, 'El teléfono es obligatorio.');
@@ -72,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        // Validar Correo Electrónico
         const correo = correoInput.value.trim();
         if (correo === '') {
             showError(correoInput, 'El correo es obligatorio.');
@@ -82,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        // Validar Cantidad de Tickets
         const cantidadTickets = parseInt(cantidadTicketsInput.value);
         const maxTickets = parseInt(cantidadTicketsInput.getAttribute('max'));
         if (isNaN(cantidadTickets) || cantidadTickets < 1) {
@@ -93,20 +146,21 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
         
-        // Validar Monto
-        const monto = parseFloat(montoInput.value);
-        if (isNaN(monto) || monto <= 0) {
+        const montoValue = montoInput.value.trim();
+        const monto = parseFloat(montoValue);
+        if (montoValue === '') {
+            showError(montoInput, 'El monto es obligatorio.');
+            isValid = false;
+        } else if (isNaN(monto) || monto <= 0) {
             showError(montoInput, 'El monto no puede ser cero o un valor inválido.');
             isValid = false;
         }
 
-        // Validar Método de Pago
         if (metodoPagoSelect && metodoPagoSelect.value === 'n') {
             showError(metodoPagoSelect, 'Debe seleccionar un método de pago.');
             isValid = false;
         }
 
-        // Validar Referencia de Pago
         const referencia = referenciaInput.value.trim();
         if (referencia === '') {
             showError(referenciaInput, 'La referencia de pago es obligatoria.');
@@ -119,14 +173,12 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        // Validar Fecha de Pago
         const fechaPago = fechaPagoInput.value;
         if (fechaPago === '') {
             showError(fechaPagoInput, 'La fecha de pago es obligatoria.');
             isValid = false;
         }
 
-        // Validar Comprobante de Pago
         if (imagenComprobanteInput.files.length === 0) {
             if (mensajeCargaImagen) {
                 mensajeCargaImagen.textContent = 'Debe subir un comprobante de pago.';
@@ -157,94 +209,53 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // --- LÓGICA FINAL Y CORREGIDA ---
-        // Si el formulario no es válido, detenemos el envío y mostramos el mensaje de error
+        // Si la validación falla, detenemos el envío del formulario
         if (!isValid) {
-            event.preventDefault(); // Detiene el envío del formulario
+            event.preventDefault();
             if (messageElement) {
                 messageElement.classList.remove('mesage_success');
                 messageElement.classList.add('mesage_error');
                 messageElement.textContent = 'Algunos datos son incorrectos, por favor revisa los campos.';
                 messageElement.style.display = 'block';
             }
-            return; // Detiene la ejecución del resto del código
+            // Aquí es donde la ejecución se detiene
+            return;
         }
         
-        // Si el formulario es válido, la ejecución continúa y el formulario se envía
-        // No agregues el mensaje de éxito aquí, ya que el servidor se encargará de eso.
+        // Si el formulario es válido, guardamos los datos en localStorage y se envía
+        saveUserToLocalStorage();
+        // Mostrar mensaje de carga de imagen si se ha seleccionado un archivo
+        if (imagenComprobanteInput.files.length > 0) {
+            mensajeCargaImagen.textContent = 'Subiendo comprobante... Por favor, espera.';
+            mensajeCargaImagen.style.display = 'block';
+            mensajeCargaImagen.style.color = '#e67e22';
+        }
+        // El formulario se enviará de forma natural
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-        const inputImagen = document.getElementById('imagen_comprobante');
-        const mensajeCarga = document.getElementById('mensajeCargaImagen');
-        const miFormulario = document.querySelector('.form'); 
-
-        
-        inputImagen.addEventListener('change', () => {
-            if (inputImagen.files.length > 0) {
-                const fileName = inputImagen.files[0].name;
-                mensajeCarga.textContent = `Archivo seleccionado: ${fileName}. Listo para subir.`;
-                mensajeCarga.style.display = 'block'; 
-                mensajeCarga.style.color = '#3498db'; 
-            } else {
-                mensajeCarga.textContent = ''; 
-                mensajeCarga.style.display = 'none'; 
-            }
-        });
-
-    
-        miFormulario.addEventListener('submit', () => {
-            
-            if (inputImagen.files.length > 0) {
-                mensajeCarga.textContent = 'Subiendo comprobante... Por favor, espera.';
-                mensajeCarga.style.display = 'block';
-                mensajeCarga.style.color = '#e67e22'; 
-            }
-
-        });
-
-    });
-    document.addEventListener('DOMContentLoaded', () => {
+    // Lógica para mostrar mensajes de sesión (éxito/error)
     const sessionMessages = document.getElementById('session-messages');
     const messageContainer = document.getElementById('dynamic-message-container');
 
-    if (!sessionMessages || !messageContainer) {
-        return; // Detiene el script si no encuentra los elementos necesarios
-    }
+    if (sessionMessages && messageContainer) {
+        const successMessage = sessionMessages.dataset.success;
+        const errorMessage = sessionMessages.dataset.error;
+        let messageHTML = '';
 
-    const successMessage = sessionMessages.dataset.success;
-    const errorMessage = sessionMessages.dataset.error;
+        if (successMessage) {
+            messageHTML = `<div class="mesage_success" role="alert"><span class="block sm:inline">${successMessage}</span></div>`;
+        }
 
-    let messageHTML = '';
+        if (errorMessage) {
+            messageHTML = `<div class="mesage_error" role="alert"><strong>¡Ups!</strong> <span class="block sm:inline">${errorMessage}</span></div>`;
+        }
 
-    // Si hay un mensaje de éxito, crea el HTML para él
-    if (successMessage) {
-        messageHTML = `
-            <div class="mesage_success" role="alert">
-                <span class="block sm:inline">${successMessage}</span>
-            </div>
-        `;
-    }
-
-    // Si hay un mensaje de error, crea el HTML para él
-    if (errorMessage) {
-        messageHTML = `
-            <div class="mesage_error" role="alert">
-                <strong>¡Ups!</strong>
-                <span class="block sm:inline">${errorMessage}</span>
-            </div>
-        `;
-    }
-
-    // Si se encontró algún mensaje, insértalo en el contenedor
-    if (messageHTML) {
-        messageContainer.innerHTML = messageHTML;
-        
-        // Opcional: Ocultar el mensaje después de 5 segundos
-        setTimeout(() => {
-            messageContainer.innerHTML = '';
-        }, 5000); // 5000 milisegundos = 5 segundos
+        if (messageHTML) {
+            messageContainer.innerHTML = messageHTML;
+            setTimeout(() => {
+                messageContainer.innerHTML = '';
+            }, 5000);
+        }
     }
 });
 

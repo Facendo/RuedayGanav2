@@ -167,6 +167,8 @@
         text-align: left;
     }
 
+
+
     /* Asegúrate de que tu HTML tenga el atributo `data-label` en cada `td` para que esto funcione. */
     /* Ejemplo: <td data-label="Teléfono">123-456-7890</td> */
     .table_gestion td:nth-of-type(1)::before { content: "Cedula"; }
