@@ -174,3 +174,78 @@ document.addEventListener('DOMContentLoaded', function() {
         // No agregues el mensaje de éxito aquí, ya que el servidor se encargará de eso.
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+        const inputImagen = document.getElementById('imagen_comprobante');
+        const mensajeCarga = document.getElementById('mensajeCargaImagen');
+        const miFormulario = document.querySelector('.form'); 
+
+        
+        inputImagen.addEventListener('change', () => {
+            if (inputImagen.files.length > 0) {
+                const fileName = inputImagen.files[0].name;
+                mensajeCarga.textContent = `Archivo seleccionado: ${fileName}. Listo para subir.`;
+                mensajeCarga.style.display = 'block'; 
+                mensajeCarga.style.color = '#3498db'; 
+            } else {
+                mensajeCarga.textContent = ''; 
+                mensajeCarga.style.display = 'none'; 
+            }
+        });
+
+    
+        miFormulario.addEventListener('submit', () => {
+            
+            if (inputImagen.files.length > 0) {
+                mensajeCarga.textContent = 'Subiendo comprobante... Por favor, espera.';
+                mensajeCarga.style.display = 'block';
+                mensajeCarga.style.color = '#e67e22'; 
+            }
+
+        });
+
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+    const sessionMessages = document.getElementById('session-messages');
+    const messageContainer = document.getElementById('dynamic-message-container');
+
+    if (!sessionMessages || !messageContainer) {
+        return; // Detiene el script si no encuentra los elementos necesarios
+    }
+
+    const successMessage = sessionMessages.dataset.success;
+    const errorMessage = sessionMessages.dataset.error;
+
+    let messageHTML = '';
+
+    // Si hay un mensaje de éxito, crea el HTML para él
+    if (successMessage) {
+        messageHTML = `
+            <div class="mesage_success" role="alert">
+                <span class="block sm:inline">${successMessage}</span>
+            </div>
+        `;
+    }
+
+    // Si hay un mensaje de error, crea el HTML para él
+    if (errorMessage) {
+        messageHTML = `
+            <div class="mesage_error" role="alert">
+                <strong>¡Ups!</strong>
+                <span class="block sm:inline">${errorMessage}</span>
+            </div>
+        `;
+    }
+
+    // Si se encontró algún mensaje, insértalo en el contenedor
+    if (messageHTML) {
+        messageContainer.innerHTML = messageHTML;
+        
+        // Opcional: Ocultar el mensaje después de 5 segundos
+        setTimeout(() => {
+            messageContainer.innerHTML = '';
+        }, 5000); // 5000 milisegundos = 5 segundos
+    }
+});
+
+
