@@ -95,7 +95,7 @@
             <button type="submit" class='button'>Cerrar Sesión</button>
         </form>
         <br>
-        <a href="{{route('admin.showticket')}}" class="button">Tickets vendidos</a>
+        <a href="{{route('admin.showticket')}}" class="button">Tickets</a>
     </div>
 
 
