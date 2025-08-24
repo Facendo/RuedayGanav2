@@ -24,6 +24,8 @@
         errorIconUrl: "{{ asset('img/dislike.png') }}" // Ruta corregida
     };
 </script>
+<script src="{{ asset('js/validate.js') }}"></script>
+<script src="{{ asset('js/precargado.js') }}"></script>
 
 <div id="session-messages" style="display:none;"
     data-success="{{ session('success') }}"
@@ -42,6 +44,7 @@
     $numeros_disponibles = json_decode($sorteo->numeros_disponibles, true);
     $cantidad_disponible = count($numeros_disponibles);
 @endphp
+
 
 
 <section id="compra" class="container container_compra">
@@ -138,67 +141,6 @@
 <script src="{{asset('js/manejo_tickets.js')}}"></script>
 
 
-<script>
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const cedulaInput = document.getElementById('cedula');
-    const nombreInput = document.getElementById('nombre_y_apellido');
-    const telefonoInput = document.getElementById('telefono');
-    const correoInput = document.getElementById('correo');
-    const formCompra = document.getElementById('reg_compra');
-
-    const saveUserToLocalStorage = () => {
-        const newUser = {
-            cedula: cedulaInput.value,
-            nombre: nombreInput.value,
-            telefono: telefonoInput.value,
-            correo: correoInput.value
-        };
-
-        const usuariosGuardados = localStorage.getItem('listaUsuarios');
-        let listaUsuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
-
-        const usuarioIndex = listaUsuarios.findIndex(u => u.cedula === newUser.cedula);
-
-        if (usuarioIndex > -1) {
-            listaUsuarios[usuarioIndex] = newUser;
-        } else {
-            listaUsuarios.push(newUser);
-        }
-
-        localStorage.setItem('listaUsuarios', JSON.stringify(listaUsuarios));
-    };
-
-    cedulaInput.addEventListener('input', () => {
-        const cedula = cedulaInput.value;
-        const usuariosGuardados = localStorage.getItem('listaUsuarios');
-        const listaUsuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
-        const usuarioEncontrado = listaUsuarios.find(u => u.cedula === cedula);
-
-        if (usuarioEncontrado) {
-            nombreInput.value = usuarioEncontrado.nombre;
-            telefonoInput.value = usuarioEncontrado.telefono;
-            correoInput.value = usuarioEncontrado.correo;
-        } else {
-            nombreInput.value = '';
-            telefonoInput.value = '';
-            correoInput.value = '';
-        }
-    });
-
-    formCompra.addEventListener('submit', (e) => {
-
-        e.preventDefault();
-        saveUserToLocalStorage();
-        e.target.submit();
-    });
-});
-
-
-</script>
-
-
 
 <!-- <script>
     //Funcion para precargar los datos del cliente
@@ -219,78 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const inputImagen = document.getElementById('imagen_comprobante');
-        const mensajeCarga = document.getElementById('mensajeCargaImagen');
-        const miFormulario = document.querySelector('.form'); 
-
-        
-        inputImagen.addEventListener('change', () => {
-            if (inputImagen.files.length > 0) {
-                const fileName = inputImagen.files[0].name;
-                mensajeCarga.textContent = `Archivo seleccionado: ${fileName}. Listo para subir.`;
-                mensajeCarga.style.display = 'block'; 
-                mensajeCarga.style.color = '#3498db'; 
-            } else {
-                mensajeCarga.textContent = ''; 
-                mensajeCarga.style.display = 'none'; 
-            }
-        });
-
     
-        miFormulario.addEventListener('submit', () => {
-            
-            if (inputImagen.files.length > 0) {
-                mensajeCarga.textContent = 'Subiendo comprobante... Por favor, espera.';
-                mensajeCarga.style.display = 'block';
-                mensajeCarga.style.color = '#e67e22'; 
-            }
-
-        });
-
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-    const sessionMessages = document.getElementById('session-messages');
-    const messageContainer = document.getElementById('dynamic-message-container');
-
-    if (!sessionMessages || !messageContainer) {
-        return; // Detiene el script si no encuentra los elementos necesarios
-    }
-
-    const successMessage = sessionMessages.dataset.success;
-    const errorMessage = sessionMessages.dataset.error;
-
-    let messageHTML = '';
-
-    // Si hay un mensaje de éxito, crea el HTML para él
-    if (successMessage) {
-        messageHTML = `
-            <div class="mesage_success" role="alert">
-                <span class="block sm:inline">${successMessage}</span>
-            </div>
-        `;
-    }
-
-    // Si hay un mensaje de error, crea el HTML para él
-    if (errorMessage) {
-        messageHTML = `
-            <div class="mesage_error" role="alert">
-                <strong>¡Ups!</strong>
-                <span class="block sm:inline">${errorMessage}</span>
-            </div>
-        `;
-    }
-
-    // Si se encontró algún mensaje, insértalo en el contenedor
-    if (messageHTML) {
-        messageContainer.innerHTML = messageHTML;
-        
-        // Opcional: Ocultar el mensaje después de 5 segundos
-        setTimeout(() => {
-            messageContainer.innerHTML = '';
-        }, 5000); // 5000 milisegundos = 5 segundos
-    }
-});
 </script>
 
     <footer id="foot">
@@ -331,7 +202,7 @@ Bienvenido a donde los sueños se hacen realidad:
 
 </footer>
 
-<script src="{{ asset('js/validate.js') }}"></script>
+
 
 
 </body>
