@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // --- VALIDACIONES DE CADA CAMPO ---
-        // (La lógica de las validaciones de los campos individuales es la misma)
         
         // Validar Cédula
         const cedula = cedulaInput.value.trim();
@@ -167,10 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 messageElement.textContent = 'Algunos datos son incorrectos, por favor revisa los campos.';
                 messageElement.style.display = 'block';
             }
-            return; // Detiene la ejecución del resto del código
         }
-        
-        // Si el formulario es válido, la ejecución continúa y el formulario se envía
-        // No agregues el mensaje de éxito aquí, ya que el servidor se encargará de eso.
     });
 });
