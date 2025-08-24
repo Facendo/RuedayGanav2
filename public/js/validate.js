@@ -165,9 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (referencia === '') {
             showError(referenciaInput, 'La referencia de pago es obligatoria.');
             isValid = false;
-        } else if (!/^\d{12}$/.test(referencia)) {
-            showError(referenciaInput, 'La referencia debe contener exactamente 12 dígitos numéricos.');
-            isValid = false;
         } else if (parseInt(referencia) <= 0) {
             showError(referenciaInput, 'La referencia debe ser un número positivo.');
             isValid = false;
