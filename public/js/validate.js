@@ -215,9 +215,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 messageElement.textContent = 'Algunos datos son incorrectos, por favor revisa los campos.';
                 messageElement.style.display = 'block';
             }
-            // Aquí es donde la ejecución se detiene
             return;
         }
+            // Aquí es donde la ejecución se detiene
+        if (messageElement && isValid) {
+            /*messageElement.classList.remove('mesage_error');
+            messageElement.classList.add('mesage_success');
+            messageElement.textContent = 'El formulario se ha enviado correctamente. Por favor, espere que su pago sea procesado.';
+            messageElement.style.display = 'block';*/
+            alert('El formulario se ha enviado correctamente. Por favor, espere que su pago sea procesado.');
+        }
+            
+        
         
         // Si el formulario es válido, guardamos los datos en localStorage y se envía
         saveUserToLocalStorage();
