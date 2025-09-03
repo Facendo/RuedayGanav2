@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'Zelle': [
             { label: 'Nombre', data: 'Jaider Brito' },
-            { label: 'Numero', data: '+1 (615) 755-3258' }
+            { label: 'Numero', data: '+1 615-755-3258' }
         ]
     };
 
